@@ -1,9 +1,8 @@
 # Cursor 远程开发实战：通过 SSH 连接 Linux（自建 + 云服务器通用篇）
 
-> 💡 通过邀请链接注册 Cursor，**首月 Pro / Pro+ / Ultra 立享 5 折**：
-> [👉 立即注册（首月 5 折）](https://cursor.com/referral?code=Y3RXKKUGMJ2G)
+> [Cursor 推广链接](https://cursor.com/referral?code=Y3RXKKUGMJ2G)：优惠与适用条件以结账页实际显示为准。
 
-**摘要**：用 Cursor 通过 SSH 连接 Linux 服务器进行远程开发的完整教程，涵盖自建 Linux（树莓派 / 软路由 LXC / 本地虚拟机）和公有云 Linux（阿里云 / 腾讯云 / AWS）的通用配置：SSH Key 生成、免密登录、远程项目映射、终端打通、文件双向同步、远程跑 Composer Agent。
+**摘要**：用 Cursor 通过 SSH 连接 Linux 服务器进行远程开发的完整教程，涵盖自建 Linux（树莓派 / 软路由 LXC / 本地虚拟机）和公有云 Linux（阿里云 / 腾讯云 / AWS）的通用配置：SSH Key、远程项目、终端、Agent，以及 Remote-SSH 与 Cloud Agents 的网络边界。
 
 **关键词**：Cursor SSH、Cursor 远程开发、Cursor 连 Linux、Cursor 阿里云、Cursor 腾讯云、Cursor 树莓派、Cursor Remote SSH、Cursor 服务器开发
 
@@ -16,7 +15,7 @@ Cursor 的远程开发能力建立在 **VS Code Remote - SSH** 协议之上。�
 ### 这对你意味着什么
 
 - **编辑、语法高亮、自动补全** 都在远端上下文里执行，文件无需同步到本地
-- **Cursor 的 Tab / Cmd+K / Chat / Composer** 同样可以操作远端目录下的文件
+- **Cursor 的 Tab、Inline Edit 与 Agent** 可在远端工作区上下文中工作；具体能力以当前版本和扩展兼容性为准
 - **终端直接在远端 shell 里执行**，无需手动 SSH 再跑命令
 
 ### 使用场景速查
@@ -29,11 +28,13 @@ Cursor 的远程开发能力建立在 **VS Code Remote - SSH** 协议之上。�
 | 临时改一两行配置文件 | ⚠️ 可用，但 vim 更轻 |
 | 远端机器本身在内网，无公网 IP | ⚠️ 需要跳板机或内网穿透方案 |
 
-### 重要前提：远程机的网络与模型调用
+### 重要前提：三条网络路径不要混淆
 
-用 Cursor Remote-SSH 开发时，**Tab 补全与 Cmd+K** 的模型推理请求实际上由 **本地 Cursor 进程**发起（通过本地网络出口走），这类功能与远端机器网络状态无关。
+1. **Remote-SSH**：本地 Cursor 通过 SSH 连接目标 Linux，文件、终端和许多扩展进程位于远端；首次安装远端组件时，下载路径与可达性会受具体版本和配置影响。
+2. **本地 Agent 操作远端工作区**：工具命令在远端终端执行，因此安装依赖、拉取仓库、调用业务 API 等操作需要远端具备对应网络访问。不要把所有 AI 流量简单归结为固定从本机或远端某一侧发出。
+3. **Cloud Agents**：运行在 Cursor 管理的独立云端 VM，会从代码托管平台克隆仓库，并使用单独配置的环境、密钥、出站网络或私网连接；它不是“在 Remote-SSH 主机上运行的 Background Agent”。
 
-但如果你在远端终端里直接运行 Cursor 的 **Background Agent / Cloud Agent**，Agent 本身的 API 调用会从远端机器发出，**远端机器需要能访问外部模型 API 端点**。这是使用远端 Agent 时需要额外规划的一个点。
+设计防火墙与凭据时，应按实际动作逐项判断发起端，不依赖旧版实现细节。
 
 ---
 
@@ -64,7 +65,7 @@ ssh-keygen -t ed25519 -C "your-email@example.com"
 # 可以设置 passphrase，也可以留空（实验环境留空更方便）
 ```
 
-> 不再推荐 `-t rsa -b 2048`：ed25519 在安全性和性能两个维度均优于 RSA 2048，且密钥文件更短。
+> 新建密钥通常优先考虑 ed25519；若受 FIPS、旧设备或组织策略约束，则按服务端兼容性与安全规范选择算法。
 
 生成完成后：
 
@@ -85,7 +86,7 @@ ED25519 key fingerprint is SHA256:XXXXXXXX.
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 
-输入 `yes` 确认后，该主机的指纹会写入 `~/.ssh/known_hosts`。Cursor Remote-SSH 扩展在后台建立连接时同样会触发此流程。**如果你自动化脚本或 CI 需要跳过此交互，在 `~/.ssh/config` 中对目标主机设置 `StrictHostKeyChecking no`（仅限已信任的内网环境）**。
+核对控制台或管理员提供的指纹后，输入 `yes`，主机指纹会写入 `~/.ssh/known_hosts`。Cursor Remote-SSH 建立连接时同样依赖主机验证。自动化场景应预先安全写入已核验的 host key；不要用 `StrictHostKeyChecking no` 绕过身份验证。
 
 ---
 
@@ -288,8 +289,8 @@ Remote-SSH: Connect to Host...
 ### 6.2 选择或新增主机
 
 - 如果 `~/.ssh/config` 已配置，列表会直接显示 `my-rpi`、`my-cloud` 等别名
-- 选中目标主机后，Cursor 会在后台 SSH 连接并自动安装远端服务组件（`~/.cursor-server/`）
-- 首次连接需要下载组件，耗时 1-3 分钟，此后缓存在远端，再次连接秒开
+- 选中目标主机后，Cursor 会通过 SSH 连接并按需准备远端组件；具体目录和下载方式可能随版本变化
+- 首次连接可能需要下载组件，耗时取决于网络；后续通常会复用远端缓存
 
 ### 6.3 打开远端工作区
 
@@ -355,19 +356,17 @@ sudo chown -R $USER:$USER ~/projects/my-api
 
 ---
 
-## 八、远程跑 Composer Agent（注意：远程机需要外网才能调模型 API）
+## 八、在远端工作区使用 Agent
 
-### 8.1 Agent 在 Remote-SSH 模式下的调用路径
+### 8.1 先确认执行位置
 
-在 Remote-SSH 会话里，**Tab 补全和 Cmd+K 的 API 请求走本地网络**（本地 Cursor 进程发起），不受远端网络影响。
+在 Remote-SSH 工作区里，Agent 对文件的编辑落在远端目录，集成终端命令也在远端执行。`npm install`、`git pull`、容器拉取和部署脚本所需网络由远端主机承担。Agent 模型服务与客户端的内部路由可能随产品实现变化，本文不把它写成固定网络保证。
 
-但 **Background Agent / Cloud Agent** 是在 Cursor 云端基础设施上独立运行的，与 Remote-SSH 的连接性无关。如果你在远端终端里通过命令行方式调用类似功能，或者配置了本地 Agent 在远端机器上执行命令，则远端机器需要能访问外部网络。
+Cloud Agents 则在独立云端 VM 中工作：需要先连接支持的代码托管平台，私有服务访问要在 Cloud Agent 环境中单独配置。Cloud Agents 不使用本地 Run Modes，也不会逐项等待本机审批。
 
-**实测建议**：用 Remote-SSH 做远端开发时，主要用 Chat / Cmd+K / Tab 这三个入口（走本地网络），优先保证本地网络质量。如需在远端机器上直接调外部 API，提前做好网络规划。
+### 8.2 可复用的 Agent 提示词（远端场景）
 
-### 8.2 可复用的 Composer 提示词（远端场景）
-
-在 Remote-SSH 下，Composer 同样可以操作远端文件，下面是适合"在远端机器上跑部署脚本"的三段式提示词：
+在 Remote-SSH 下，Agent 可以操作远端工作区文件。下面是适合“在远端机器上跑部署脚本”的三段式提示词：
 
 **任务**：
 
@@ -399,10 +398,10 @@ Cursor 会读取远端 `nginx.conf` 的实际内容后再给出回答，不需�
 
 | 操作 | 可行性 | 说明 |
 | --- | --- | --- |
-| 用 Chat 分析远端日志文件 | ✅ 完全可行 | @引用远端文件，本地网络出口 |
-| 用 Cmd+K 改远端代码 | ✅ 完全可行 | 同上 |
-| 用 Composer 批量改远端多文件 | ✅ 完全可行 | 工作区在远端，操作自然落远端 |
-| 用 Background Agent 在远端机器上跑长任务 | ⚠️ 需远端外网 | Agent 云端发起，远端机需能访问 API |
+| 用 Agent 分析远端日志文件 | ✅ | `@` 引用远端文件，并检查敏感信息 |
+| 用 Inline Edit 改远端代码 | ✅ | 改动直接写入远端工作区 |
+| 用 Agent 批量改远端多文件 | ✅ | 先确认 Git 状态并审阅差异 |
+| 让 Cloud Agent 继续同一任务 | 需单独配置 | 云端从代码托管平台克隆仓库，不继承当前 SSH 会话 |
 
 ---
 
@@ -492,12 +491,12 @@ ssh user@your-server-ip
 
 ---
 
-### 🎁 准备开始用 Cursor？
+## 官方来源与声明
 
-通过邀请通道注册，**首月 Pro / Pro+ / Ultra 立享 5 折**——相当于 Pro 仅需 $10、Pro+ 仅需 $30、Ultra 仅需 $100。
+最后核验：**2026-09-03**
 
-[👉 立即开通（首月 5 折）](https://cursor.com/referral?code=Y3RXKKUGMJ2G)
+- [Cursor Cloud Agents](https://cursor.com/docs/cloud-agent)
+- [Cursor Agent](https://cursor.com/docs/agent)
+- [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 
-> 邀请通道仅对首月生效，次月起恢复原价；可随时取消订阅。
-
-<!-- char count: 10753 -->
+本文为原创实战教程，非 Cursor 或 VS Code Remote-SSH 官方文档；内容曾由 AI 辅助校对；发布前应由维护者依据官方资料完成人工复核。SSH、扩展兼容性和远端组件行为请结合当前 Cursor 界面、日志及官方文档验证。

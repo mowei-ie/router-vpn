@@ -1,7 +1,6 @@
 # Cursor Agent 实战：用 AI 写一个完整的全栈小应用
 
-> 💡 通过邀请链接注册 Cursor，**首月 Pro / Pro+ / Ultra 立享 5 折**：
-> [👉 立即注册（首月 5 折）](https://cursor.com/referral?code=Y3RXKKUGMJ2G)
+> [Cursor 推广链接](https://cursor.com/referral?code=Y3RXKKUGMJ2G)：优惠与适用条件以结账页实际显示为准。
 
 **摘要**：用 Cursor Agent 模式从零开始对话，生成一个完整的全栈小应用（以「备忘录 / 短链生成器」为例）：前端 React + 后端 Express + SQLite 数据库，前端部署到 Cloudflare Pages，后端部署到阿里云 ECS。全程用提示词驱动，不需要你手动写代码，让 AI 扮演「实习程序员」把整个项目做出来。
 
@@ -11,7 +10,7 @@
 
 ## 一、需求拆解（用 Cursor Chat 写产品文档）
 
-在开始写代码之前，先用 Cursor Chat 帮你把需求整理清楚。打开 Cursor，按 `Ctrl+L` 打开 Chat，输入：
+在开始写代码之前，先用 **Plan** 模式帮你把需求整理清楚。从侧栏或 Command Palette 打开 Agent，再从模式选择器切到 Plan；快捷键以当前键盘快捷方式设置为准。输入：
 
 > 我想做一个「个人短链生成器」：
 >
@@ -28,9 +27,9 @@ Cursor 生成需求文档后，**保存为 `docs/requirements.md`**。这一步�
 
 ## 二、Agent 一次性生成项目骨架
 
-需求确认后，按 `Ctrl+Shift+P` → `New Cursor Composer Window`（或者按 `Ctrl+I`）打开 Composer，切换到 **Agent 模式**（右上角选 Agent）。
+需求确认后，在同一会话切换到 **Agent** 模式实施。旧版 Composer 窗口名称和快捷键已不再作为本文依据；请从当前模式选择器或 Command Palette 操作。
 
-在 Composer 里粘贴：
+在 Agent 输入框里粘贴：
 
 **任务**：
 
@@ -237,12 +236,12 @@ npm install
 
 ---
 
-### 🎁 准备开始用 Cursor？
+## 官方来源与声明
 
-通过邀请通道注册，**首月 Pro / Pro+ / Ultra 立享 5 折**——Pro 仅需 $10、Pro+ 仅需 $30、Ultra 仅需 $100。
+最后核验：**2026-09-03**
 
-[👉 立即开通（首月 5 折）](https://cursor.com/referral?code=Y3RXKKUGMJ2G)
+- [Cursor Agent](https://cursor.com/docs/agent)
+- [Prompting Agents](https://cursor.com/docs/agent/prompting)
+- [Run Modes](https://cursor.com/docs/agent/security/run-modes)
 
-> 邀请通道仅对首月生效，次月起恢复原价；可随时取消订阅。
-
-<!-- char count: 6436 -->
+本文为原创实战教程，非 Cursor、Cloudflare 或阿里云官方文档；内容曾由 AI 辅助校对；发布前应由维护者依据官方资料完成人工复核。部署前请审阅 Agent 的文件修改和命令，并以各平台当前文档为准。

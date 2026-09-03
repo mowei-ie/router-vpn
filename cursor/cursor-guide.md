@@ -1,234 +1,188 @@
-# Cursor 2026 — 不懂代码也能用 AI 写代码、建网站、做任何事
+# Cursor 2026 使用指南：套餐、模型、Agent 与安全
 
-> 💡 通过邀请链接注册 Cursor，**首月 Pro / Pro+ / Ultra 立享 5 折**：
-> [👉 立即注册（首月 5 折）](https://cursor.com/referral?code=Y3RXKKUGMJ2G)
+> [Cursor 推广链接](https://cursor.com/referral?code=Y3RXKKUGMJ2G)：是否有优惠、优惠金额与适用套餐，以结账页实际显示为准。
 
-**摘要**：普通人视角的 Cursor 完整指南——不懂编程也能用 Agent 对话建网站、维护主页、写脚本、解决技术问题。含注册开通、套餐选择与充值、主流模型介绍（Sonnet 4.6 / Opus 4.7 / GPT-5.5 / Codex / Gemini Pro）、Agent 详解、常见功能与故障排查。
-
-**关键词**：Cursor 教程、Cursor 注册、Cursor 国内能用吗、Cursor 充值、Cursor Agent、Cursor 模型选型、Cursor 建站、Cursor 写网站、Cursor 小白教程
+**摘要**：面向新用户的 Cursor 主指南，介绍当前套餐与模型池、Agent 工作方式、Rules / `AGENTS.md` / Skills、Hooks、MCP、Cloud Agents、CLI，以及本地 Agent 的审批与执行安全。
 
 ---
 
-## 一、Cursor 是什么？一句话说清楚
+<a id="intro"></a>
+## 一、Cursor 是什么？
 
-Cursor 表面上是一个带 AI 的代码编辑器，**实际上是一个全能的 AI 工作台**——你跟它说话，它能帮你编程、建站、写作、翻译、整理资料、改文档、写提示词、解决各种技术问题。
+Cursor 是以代码仓库和开发工作流为中心的 AI 编辑器。它既能回答问题，也能搜索项目、编辑文件、运行命令和调用外部工具。它适合建站、编写脚本、排查错误、维护文档和部署应用，但生成结果仍需由使用者审阅和验证。
 
-**你不需要懂编程**——就像你雇了一个全职助理：你说需求，它来干活，你来验收。
+常见场景：
 
-普通人可以用 Cursor 做什么？
-
-| 场景 | 怎么用 |
+| 场景 | 典型用法 |
 | --- | --- |
-| 🌐 建个人网站 | 跟 AI 描述你想要什么，它帮你生成并部署上线 |
-| 📝 写作 / 排版 | 写博客、公众号、报告、PPT 大纲，让 AI 帮你润色与排版 |
-| 🌏 翻译 / 读英文文档 | 整个 PDF、英文长文丢进去，让它翻译并用中文总结 |
-| 💬 日常对话 / 答疑 | 跟 ChatGPT 一样自由聊天，但能直接读你工作目录里的文件 |
-| 🎯 写提示词 | 让 Agent 帮你迭代 Prompt，并在本地保存为可复用的提示词模板 |
-| 🔧 修网站 Bug | 复制报错给 AI，它告诉你哪里错了怎么改 |
-| 📂 批量处理文件 | 让 AI 写脚本批量重命名、格式转换、Excel / 文本清洗 |
-| 🚀 部署服务器应用 | AI 帮你写部署脚本，服务器配置一起搞定 |
+| 新建或维护网站 | 让 Agent 创建页面、修改样式、运行预览与测试 |
+| 理解代码 | 用 Ask 搜索代码库并解释调用链，不修改文件 |
+| 规划复杂改动 | 用 Plan 澄清需求、比较方案并形成实施计划 |
+| 批量处理文件 | 先让 Agent 写脚本，再用样本和只读检查验证 |
+| 部署与排障 | 读取日志、修改配置、运行构建；高风险动作人工确认 |
 
 ---
 
-## 二、下载、注册、开通
+<a id="plans"></a>
+## 二、下载、登录与套餐
 
-1. 下载安装 Cursor（支持 Windows / macOS / Linux）
-2. 点击「Sign In」，用 Google 账号或邮箱注册
-3. 通过邀请链接注册可享首月 5 折：[👉 立即注册（首月 5 折）](https://cursor.com/referral?code=Y3RXKKUGMJ2G)
-4. 进入 Settings → Models，确认你想使用的模型已开启
+从 [Cursor 官网](https://cursor.com/) 下载 Windows、macOS 或 Linux 客户端。登录后可在编辑器设置与用量面板查看当前套餐、可用模型和本周期消耗。
 
-> 💡 **免费版（Free）可以试用**，但 Agent 任务量有限，遇到复杂任务容易卡住。想流畅做网站，建议开通 **Pro 档（首月 $10）**，用一个月后随时可以取消。
+### 个人与团队套餐
 
----
+以下为 2026-09-03 官方文档列出的月付价格；税费、币种、地区可用性和结账方式以官方结账页为准。
 
-## 三、套餐与价格 + 国内充值方法
+| 套餐 | 价格 | 说明 |
+| --- | ---: | --- |
+| Hobby | 免费 | 入门体验；具体可用模型与额度可能变化，以模型选择器和用量页为准 |
+| Start | ₹649/月，含税 | 仅面向印度开发者；包含 Cursor Models 池，不包含 Other Models 池 |
+| Pro | $20/月 | 包含 Cursor Models 与 Other Models 两个池 |
+| Pro+ | $60/月 | 两个模型池，包含量高于 Pro |
+| Ultra | $200/月 | 面向高用量个人用户；用量仍受官方计费与额度政策约束 |
+| Teams Standard | $40/用户/月 | 团队管理与协作能力 |
+| Teams Premium | $120/用户/月 | Agent 限额为 Standard 的 5 倍 |
+| Enterprise | 自定义 | 面向需要发票、SCIM、优先支持或高级安全控制的组织 |
 
-### 套餐对比
+模型价格不同，同样的 token 数会以不同速度消耗包含量。达到限额后，可按账户可用选项升级套餐或启用按量付费。不要根据旧文章推断固定请求次数。
 
-| 套餐 | 原价 | 首月 5 折 | 适合谁 |
-| --- | --- | --- | --- |
-| **Pro** | $20/月 | **$10** | 个人建站、日常开发的主力选择 |
-| **Pro+** | $60/月 | **$30** | 需要大量 Opus 4.7 / GPT-5.5 调用 |
-| **Ultra** | $200/月 | **$100** | 重度 AI 开发者，无限量高端模型 |
-
-套餐价格以 Cursor 官方收银台显示为准。
-
-### 国内充值方法
-
-**方式一（最推荐）：支付宝直接付款**
-
-Cursor 官方结账页直接支持支付宝，无需绕路：
-
-1. 注册并登录 Cursor 后，进入订阅页面选择套餐
-2. 在支付方式里选择 **支付宝**
-3. 填写账单地址（国家选「中国」，填写省市邮编即可）
-4. 点击「订阅」按钮，跳转到支付宝完成付款
-5. 汇率按**当日实时汇率**换算成人民币
-
-> 📝 在中国大陆直接访问支付，或通过节点（如新加坡）访问均可正常使用支付宝。
-
-**方式二：国内银行 Visa / Mastercard 双标卡**
-
-招商、建设、工商等主流银行的双币信用卡，在结账页选「银行卡」直接填卡号付款。最稳定，适合长期订阅用户。
-
-**注意**：付款前确认已开通「境外线上支付」功能，否则会被银行拦截。
-
-**方式三：海外虚拟信用卡（备选）**
-
-WildCard 等平台可以开具虚拟 Visa 卡，适合没有双标卡的用户。注意核对综合费率（通道费 + 汇率差）。
-
-**方式四：Apple 订阅（iOS 用户）**
-
-通过苹果中国区内购订阅 Cursor，可以用绑定的支付宝 / 微信支付。
-
-> ⚠️ 注意：此方案本文作者未亲测，操作前请确认当前 App Store 中 Cursor 有可用内购选项，并留意苹果会额外收取一定手续费。具体步骤：App Store → 搜索 Cursor → 订阅 → 选档位 → 用 Apple ID 绑定的国内支付方式完成付款。
-
-**方式五：教育优惠**
-
-在校学生凭 .edu 邮箱申请，有折扣。先确认当前是否有活动窗口，再提交认证材料。
+支付方式、地区限制、税费、教育活动和任何推广优惠，都应在登录后的结账页及官方地区说明中核对。本文不保证支付宝、中国直连、Apple 内购或教育折扣可用。
 
 ---
 
-## 四、主流模型介绍：选哪个？
+<a id="models"></a>
+## 三、模型与两个用量池
 
-Cursor 里可以调用多个顶级 AI 模型，每个模型的强项不同。记住下面的选用规则就够了：
+Cursor 的付费个人套餐将用量分为两个独立、按月重置的池：
 
-| 模型 | 定位 | 最适合的场景 |
-| --- | --- | --- |
-| **Claude Sonnet 4.6** ⭐ | 日常主力 | 速度快、理解准确，90% 的任务用这个就够了 |
-| **Claude Opus 4.7** | 复杂任务 | 思考更深、更谨慎，适合架构设计、复杂 bug 排查 |
-| **GPT-5.5** | 代码专家 | OpenAI 顶级模型，代码生成能力极强 |
-| **Codex** | 轻量快速 | 响应速度快，适合简单代码补全和小修小改 |
-| **Gemini Pro** | 超大上下文 | 上下文窗口极大，适合分析整个大型项目 |
-| **Auto / Composer-2** | 免费可用 | Cursor 自研基础模型，无需开通 Pro，不需要海外网络 |
+- **Cursor Models**：当前包括 Cursor Grok 4.6、Grok 4.5 与 Composer 2.5，并提供更多包含用量。
+- **Other Models**：第三方模型池，按模型 API 价格消耗；Pro、Pro+、Ultra 包含，Start 不包含。
 
-### 网络要求
+截至核验日，当前主系列包括：
 
-| 操作 | 是否需要海外网络 |
+| 模型 | 适合场景 |
 | --- | --- |
-| 安装、登录、基本使用 | ❌ 不需要，国内直连 |
-| Composer-2 / Auto 模型 | ❌ 不需要，国内直连 |
-| Claude Sonnet 4.6 / Opus 4.7 | ✅ 通常需要稳定海外网络 |
-| GPT-5.5 / Codex / Gemini Pro | ✅ 需要海外网络 |
-| cursor.com 网页后台 | ⚠️ 部分地区访问可能不稳定 |
+| Composer 2.5 | 快速迭代、日常编辑与成本敏感任务 |
+| Grok 4.6 | Cursor Models 池中的强推理选择 |
+| Claude Sonnet 5 | 日常复杂编码、多文件实现与调试 |
+| Claude Opus 5 | 高难度架构、审计与复杂推理 |
+| GPT-5.6 Sol | GPT-5.6 系列旗舰，适合高难度、长任务 |
+| GPT-5.6 Terra | 在能力、速度和成本之间取平衡 |
+| GPT-5.6 Luna | 低成本、快速和较轻任务 |
 
-高端模型需要稳定访问官方服务；网络不稳定时优先排查本机网络与账号地区设置。
+模型列表、上下文窗口、Fast/Thinking 变体和单价会变化。Hobby 免费档不要预设一定能用某个具体模型；直接查看 [Models & Pricing](https://cursor.com/docs/models-and-pricing) 和编辑器当前模型选择器。
 
 ---
 
-## 五、Agent 模式：最强大的功能（重点）
+<a id="interactions"></a>
+## 四、Agent、Ask 与 Plan
 
-这是 Cursor 最强大、也最适合普通人的功能。**你说需求，AI 自己规划步骤、写代码、修 bug、直到完成任务。**
+- **Agent**：可搜索、编辑文件、运行命令及调用工具，适合已经明确要实施的任务。
+- **Ask**：面向只读探索和答疑；适合先理解代码或诊断原因。
+- **Plan**：先澄清需求和设计步骤，再进入实现；适合跨文件改动或存在明显取舍的任务。
 
-### Agent 和普通 AI 聊天有什么区别？
+界面与快捷键会随版本、系统和用户键位变化。优先从 Agent 输入框的模式选择器切换，或打开 Command Palette 搜索相应命令；当前绑定以界面和键盘快捷方式设置页为准。
 
-普通 AI 聊天（比如 ChatGPT）是一问一答——你问一个问题，它给你一段回答，你还得自己把代码复制粘贴进去、自己搞清楚哪里出了问题。
+推荐提示词结构：
 
-**Cursor Agent 不一样**：它可以直接读你电脑上的文件、写进去、改掉、还能自己运行命令验证结果——你只需要看它干完后说「OK」或「这里不对，改一下」。
-
-### 怎么用 Agent？
-
-1. 按 `Ctrl+Shift+I`（macOS：`Cmd+Shift+I`）打开 **Composer**
-2. 用中文描述你想做的事（任务越具体越好）
-3. Agent 会列出计划，开始逐步执行，你在旁边看着
-4. 如果有步骤不对，直接说「这里不对，应该……」
-5. 完成后检查结果，觉得 OK 就接受，不对就让它改
-
-### 实际使用例子
-
-| 你说的话 | Agent 做了什么 |
-| --- | --- |
-| 「帮我建一个个人主页，简洁风格，有自我介绍和联系方式」 | 生成 HTML/CSS 文件，可直接上传 GitHub |
-| 「把网站的导航栏颜色改成深蓝色」 | 找到 CSS 文件，定位样式，修改颜色，保存 |
-| 「我的网站点了按钮没反应，帮我找原因」 | 读取文件，找到问题所在，直接帮你修 |
-| 「帮我写一个读 Excel 并转成网页表格的 Python 脚本」 | 写脚本、列出需要安装的库、给出运行方法 |
-
-### 提示词技巧
-
-任务描述越具体，结果越好。推荐三段式结构：
-
-```
-目标：你想要什么
-约束：有什么限制（不用哪些技术、文件不要动什么等）
-验收：怎么判断做好了
+```text
+目标：最终要得到什么
+范围：允许改哪些文件，哪些内容不能动
+约束：技术版本、安全边界、兼容性要求
+验收：要运行哪些测试或看到什么结果
 ```
 
----
-
-## 六、其他常用功能
-
-### Tab 补全
-
-写代码时 AI 自动预测你下一行要写什么，按 Tab 接受，不想要就继续打字忽略。
-
-### Cmd+K 快改
-
-选中一段代码，按 `Ctrl+K` / `Cmd+K`，输入你想怎么改（如「把这个函数改成用英文注释」），AI 直接在原地改好。适合小范围、定向修改。
-
-### Chat 问答
-
-右侧 Chat 面板，问问题、让 AI 解释代码、分析问题、给建议。不会直接改文件，只给你回答，适合探索和理解。
-
-### @ 引用 — 让 AI 看你的文件
-
-在 Chat 或 Composer 里输入 `@` 可以引用文件、目录或代码片段，让 AI 基于实际文件内容回答，而不是凭空猜测。
+使用 `@` 可以附加文件、目录、终端、聊天、Git 差异或浏览器上下文。已知相关文件时再附加；不确定时可让 Agent 自行搜索。
 
 ---
 
-## 七、实战场景教程
+## 五、Rules、AGENTS.md 与 Skills
 
-| 教程 | 你能学到什么 |
+三者相关，但不是同一种机制：
+
+- **Project Rules**：位于 `.cursor/rules/*.mdc`，可按始终应用、智能相关性、文件路径或手动引用生效。
+- **`AGENTS.md`**：纯 Markdown 的简洁项目指令；支持仓库根目录和子目录，越具体的目录说明优先。
+- **Agent Skills**：以 `SKILL.md` 为入口的可移植任务包，可包含脚本、模板、参考资料和资源，并按需加载或通过 `/技能名` 调用。
+
+Rules / `AGENTS.md` 适合持续约束代码风格、架构和操作边界；Skills 适合可复用、可执行的领域工作流。不要把 `.cursor/rules`、`AGENTS.md` 和 Skill 当作同义词。
+
+Hooks 是另一层确定性机制：在 Agent 生命周期或工具调用前后运行脚本，适合格式化、审计和策略检查。AI 指令和 Hooks 都不应替代操作系统权限、凭据最小化、分支保护或人工审查。
+
+---
+
+## 六、MCP、Cloud Agents 与 CLI
+
+### MCP
+
+MCP 连接外部工具和数据源，可通过 Marketplace 或 `mcp.json` 配置。服务器可能暴露 tools、prompts、resources 等能力。安装前应核验来源、权限与代码；令牌使用最小权限并通过环境变量传入。
+
+### Cloud Agents
+
+Cloud Agents 在 Cursor 管理的隔离云端 VM 中克隆仓库、安装依赖、运行测试，并在独立分支工作。它们不依赖本机持续联网，也不等同于 Remote-SSH：Cloud Agent 是否能访问私有服务，取决于其云端环境、出站限制、密钥和私网连接配置。
+
+Cloud Agents 不使用本地 Run Modes，也不会逐项等待本机审批。把仓库指令、项目 Skills、Hooks 和必要环境配置提交到仓库；本机用户目录中的配置不会自动复制到云端。
+
+### Cursor CLI
+
+Cursor CLI 提供 Agent、Plan、Ask 模式，读取 `.cursor/rules`、`AGENTS.md` 和 `mcp.json`，支持恢复会话、worktree、非交互输出及将任务交给 Cloud Agent。具体命令与快捷键以 [CLI 官方文档](https://cursor.com/docs/cli/using) 为准。
+
+---
+
+<a id="security"></a>
+## 七、审批与执行安全
+
+本地 Agent 的 **Run Modes** 位于 `Settings > Agents > Approvals & Execution`：
+
+| 模式 | 核心行为 |
 | --- | --- |
-| [用 Cursor 上线个人网站](./practice/cursor-build-static-site.md) | AI 生成网站 → Cursor 界面推送 GitHub → 域名绑定全流程 |
-| [Cursor SSH 连接 Linux 远程开发](./practice/cursor-ssh-linux.md) | 树莓派 / 云服务器远程编辑，跑 Agent |
-| [Cursor + 阿里云 ECS 部署 Web 应用](./practice/cursor-aliyun-deploy.md) | 从代码到上线服务器，Agent 全程陪跑 |
-| [Cursor Agent 全栈小应用实战](./practice/cursor-fullstack-app.md) | 从需求到前后端全栈应用，不写一行代码 |
-| [用 Cursor Agent 修 Windows 系统](./system-ops/cursor-fix-windows-system.md) | Defender 被策略关停 + Windows Update 更新源被劫持的双线排查实录 |
+| Auto-review | allowlist 中的调用直接运行；其他调用尽量进入沙箱或由分类器审查 |
+| Allowlist | 仅 allowlist 中的动作自动运行，可结合终端沙箱 |
+| Run Everything | 所有工具调用自动运行，无沙箱和分类器；风险最高 |
+
+`permissions.json` 用自然语言提示 Auto-review 倾向放行或拦截哪些调用，是便利配置，**不是安全边界**。分类器也可能误判。`sandbox.json` 控制沙箱可访问的路径与网络，两者职责不同。
+
+不要只按命令是否写入来预测审批结果。实际行为由 Run Mode、allowlist、沙箱能力、团队策略、保护机制及当次审批共同决定。对生产部署、删除数据、修改系统服务、写入凭据和不可逆 Git 操作，应使用最小权限、备份、版本控制和人工复核。
 
 ---
 
-## 八、常见故障排查
+<a id="troubleshooting"></a>
+## 八、常用工作流与故障排查
 
-**登录不进去 / 反复要求验证**
+1. **先说明模式**：只想分析就明确“不要修改文件”；要实施则列出可改范围和验收。
+2. **审阅差异**：Agent 的文件修改会写入磁盘；用 Git 或差异视图逐项复核。
+3. **验证结果**：运行相关测试、构建或最小复现，不以 Agent 的口头结论代替证据。
+4. **控制上下文**：优先引用关键文件，长会话及时总结，避免把无关大文件全部附加。
 
-清除 Cursor 缓存（Help → Reset App Data），用无痕窗口重新登录；确认代理软件没有拦截 Cursor 的请求。
+常见问题：
 
-**模型不响应 / 一直转圈**
-
-先切换到 Composer-2（免费模型）试试。如果 Composer-2 正常，说明高端模型（Claude/GPT）需要稳定海外网络，切换节点后再试。
-
-**用了很多次后提示「额度用完」**
-
-Free 档有月度用量上限。Pro 档对 Sonnet 4.6 有大量配额，偶尔切 Composer-2 可以省下高端模型额度用于关键任务。
-
-**付款后权益没更新**
-
-先刷新页面、重新登录。等 5 分钟仍未更新，进入 Settings → Account 查看订阅状态，或通过 Cursor 官方支持渠道提交订单号。
-
-**GitHub 推送时提示认证失败**
-
-在 Cursor 里重新授权 GitHub：Settings → 搜索「GitHub」→ 重新登录授权，再尝试推送。
+- **登录或订阅状态异常**：重新登录并查看账户/用量页；仍不一致时通过官方支持渠道提交订单信息。
+- **模型不可选或请求失败**：先查看套餐、两个用量池、团队模型策略和状态页，再检查本机网络；不要据此推断某地区或某供应商必然被阻断。
+- **规则未生效**：确认 Project Rule 使用 `.mdc` 且触发条件正确；`AGENTS.md` 放在对应目录；Skill 文件夹包含有效 `SKILL.md`。
+- **工具执行未询问**：立即检查当前 Run Mode、allowlist、团队策略及保护设置；必要时切回 Allowlist 或 Auto-review。
 
 ---
 
-## 相关教程
+## 九、实战教程
 
-- [用 Cursor 上线个人网站（GitHub Pages + 自定义域名）](./practice/cursor-build-static-site.md)
-- [Cursor SSH 连接 Linux 远程开发](./practice/cursor-ssh-linux.md)
-- [Cursor + 阿里云 ECS 部署 Web 应用](./practice/cursor-aliyun-deploy.md)
-- [Cursor Agent 全栈小应用实战](./practice/cursor-fullstack-app.md)
-- [用 Cursor Agent 修 Windows 系统（实录）](./system-ops/cursor-fix-windows-system.md)
-- [ChatGPT Plus 充值指南](../chatgpt/chatgpt-plus-guide.md)
-- [OpenAI API 指南](../chatgpt/openai-api-guide.md)
+- [GitHub Pages + 自定义域名上线静态站](./practice/cursor-build-static-site.md)
+- [通过 SSH 连接 Linux 远程开发](./practice/cursor-ssh-linux.md)
+- [阿里云 ECS 部署 Web 应用](./practice/cursor-aliyun-deploy.md)
+- [Agent 全栈小应用实战](./practice/cursor-fullstack-app.md)
+- [MCP 与 CLI 的工具取舍](./practice/cursor-cli-vs-mcp.md)
+- [用 Agent 辅助排查 Windows 系统](./system-ops/cursor-fix-windows-system.md)
 
 ---
 
-### 🎁 准备开始用 Cursor？
+## 官方来源与声明
 
-通过邀请通道注册，**首月 Pro 仅需 $10**（原价 $20，5 折优惠）。建完网站后可随时取消订阅。
+最后核验：**2026-09-03**
 
-[👉 立即开通（首月 5 折）](https://cursor.com/referral?code=Y3RXKKUGMJ2G)
+- [Cursor 文档](https://cursor.com/docs)
+- [Models & Pricing](https://cursor.com/docs/models-and-pricing)
+- [Agent Skills](https://cursor.com/docs/skills)
+- [Rules](https://cursor.com/docs/context/rules)
+- [Run Modes](https://cursor.com/docs/agent/security/run-modes)
+- [MCP](https://cursor.com/docs/context/mcp)
+- [Cloud Agents](https://cursor.com/docs/cloud-agent)
+- [Cursor CLI](https://cursor.com/docs/cli/using)
 
-> 邀请通道仅对首月生效，次月起恢复原价；可随时取消订阅。
-
-<!-- char count: 5492 -->
+本文为原创中文整理，非 Cursor 官方文档；内容曾由 AI 辅助校对；发布前应由维护者依据官方资料完成人工复核。产品、价格和界面可能继续变化，请以官方页面与账户实际显示为准。

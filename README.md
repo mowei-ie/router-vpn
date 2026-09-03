@@ -1,25 +1,28 @@
-# AI 编程实战教程 2026 — Cursor / ChatGPT / OpenAI API
+# AI 编程实战教程 2026 — Cursor / ChatGPT / OpenAI API / OpenAI Codex
 
 [![GitHub stars](https://img.shields.io/github/stars/wybzsngw/router-vpn?style=for-the-badge&label=stars&color=orange)](https://github.com/wybzsngw/router-vpn/stargazers)
 [![License](https://img.shields.io/badge/license-Apache_2.0-10b981?style=for-the-badge)](LICENSE)
-![Last Updated](https://img.shields.io/badge/最近更新-2026.07-7c4dff?style=for-the-badge)
+![Last Updated](https://img.shields.io/badge/最近更新-2026.09-7c4dff?style=for-the-badge)
 
-> 本仓库聚焦 **AI 编程与对话工具** 实战文档：Cursor 完整指南与实战连载、ChatGPT Plus / Go 充值、OpenAI API 申请与计费。
-
-⭐ 觉得有用？**Star 一下支持我们！**
-
----
+本仓库提供 Cursor、ChatGPT、OpenAI API 与 OpenAI Codex 的中文实战教程，重点关注可执行步骤、工程流程、风险边界和版本核验。
 
 ## 教程入口
 
-| 工具 | 教程 | 适用场景 |
-|------|------|----------|
-| Cursor | [完整指南](cursor/cursor-guide.md) · [实战连载](cursor/practice/) | 编程 / 建站 / 写作 / 翻译 / 对话 / 提示词 |
-| ChatGPT Plus / Go | [充值与支付指南](chatgpt/chatgpt-plus-guide.md) | 订阅与付款 |
-| OpenAI API | [申请与计费指南](chatgpt/openai-api-guide.md) | 开发接入与计费 |
-| Claude Code | （陆续上线） | AI 命令行编程 |
-| Windsurf | （陆续上线） | AI 编程 IDE |
-| Codex / Gemini CLI | （陆续上线） | AI 命令行 |
+| 专题 | 入口 | 主要内容 |
+| --- | --- | --- |
+| Cursor | [Cursor 专题](cursor/README.md) | 完整指南、建站、全栈开发、SSH、部署与系统运维 |
+| ChatGPT | [ChatGPT Plus / Go 指南](chatgpt/chatgpt-plus-guide.md) | 订阅、支付、账号安全与常见问题 |
+| OpenAI API | [OpenAI API 指南](chatgpt/openai-api-guide.md) | 申请、密钥安全、计费与开发接入 |
+| OpenAI Codex | [Codex 专题](codex/README.md) | 产品入口、CLI、工程工作流与定制 |
+
+Gemini CLI 尚未建档，因此不列入教程主表。本仓库目前也没有 Claude Code 或 Windsurf 专题，请勿将待规划方向视为已有内容。
+
+### Codex 核心文章
+
+- [认识 OpenAI Codex：入口、登录与工具边界](codex/codex-guide.md)
+- [Codex CLI 快速上手：Windows 与 PowerShell 主线](codex/codex-cli-quickstart.md)
+- [从任务到 Git 交付：一套可审阅的 Codex 工作流](codex/codex-workflow.md)
+- [Codex 定制指南：指令、配置、技能与自动化](codex/codex-customization.md)
 
 ### Cursor 实战连载
 
@@ -30,40 +33,52 @@
 - [Cursor CLI vs MCP](cursor/practice/cursor-cli-vs-mcp.md)
 - [用 Cursor 修 Windows 系统问题](cursor/system-ops/cursor-fix-windows-system.md)
 
----
-
 ## 仓库结构
 
-```
-├── cursor/          Cursor 教程（完整指南 + 实战连载）
-├── chatgpt/         ChatGPT Plus 充值、OpenAI API
-├── extras/          Tailscale、部署指南等扩展
-├── docs/            站点静态资源（由 Cloudflare Pages 部署）
-└── scripts/         站点运维脚本
+```text
+├── cursor/          Cursor 指南与实战连载
+├── chatgpt/         ChatGPT 与 OpenAI API 教程
+├── codex/           OpenAI Codex 专题与核心教程
+├── extras/          Tailscale、部署指南等扩展内容
+├── docs/            已暂停维护的静态站历史文件
+└── scripts/         历史站点相关脚本
 ```
 
----
+当前有效教程以仓库中的 Markdown 文件为准。`docs/` 静态站已经暂停，不恢复站点，也不提供 HTML 版本入口。
+
+## 内容原则与版权说明
+
+- 产品能力、命令、配置、价格和支持范围以对应产品的官方资料为事实依据。
+- 第三方教程只用于检查选题是否遗漏，不复制其表达、目录、示例、表格、图片或视觉设计。
+- 必要的少量引用会明确标注出处并提供原始链接。
+- OpenAI、ChatGPT、Codex、Cursor 等名称与商标归各自权利人所有；本项目为非官方中文教程，不代表相关厂商。
+- 内容由 AI 辅助起草；发布前应由维护者依据官方资料完成人工复核。实际使用前仍应核对最新官方资料和产品界面。
 
 ## 更新日志
 
+### 2026 年 9 月
+
+- 全面校准 ChatGPT/OpenAI API 与 Cursor 教程。
+- 新增 OpenAI Codex 专题入口与 4 篇核心教程。
+- 更新仓库定位、目录结构、内容原则和非官方声明。
+- 修正首页教程链接，并明确 Markdown 为当前有效内容载体、静态站暂停。
+
 ### 2026 年 7 月
 
-- 仓库内容收口为 AI 编程与对话工具文档
+- 仓库内容收口为 AI 编程与对话工具文档。
 
 ### 2026 年 5 月
 
-- 新增 Cursor AI 编程系列：完整指南 + 实战连载
-- ChatGPT / OpenAI API 内容校准
-
----
+- 新增 Cursor AI 编程系列：完整指南与实战连载。
+- 校准 ChatGPT 与 OpenAI API 内容。
 
 ## 免责声明
 
-本教程仅供学习和研究使用，请遵守当地法律法规与各产品服务条款。使用本教程所产生的任何后果，作者不承担任何责任。
+本教程仅供学习和研究使用。请遵守所在地法律法规、组织政策及各产品服务条款，并自行评估命令执行、账号、费用和数据安全风险。
 
 ## 反馈与贡献
 
-- 文档问题请提交 [Issue](https://github.com/wybzsngw/router-vpn/issues)
-- 欢迎提交 Pull Request
+- 文档问题请提交 [Issue](https://github.com/wybzsngw/router-vpn/issues)。
+- 欢迎提交 Pull Request。
 
-**最后更新**：2026 年 7 月
+**最后核验 / 更新时间：2026 年 9 月。**
