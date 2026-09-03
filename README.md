@@ -1,7 +1,8 @@
 # AI 编程实战教程 2026 — Cursor / ChatGPT / OpenAI API / OpenAI Codex
 
 [![GitHub stars](https://img.shields.io/github/stars/wybzsngw/router-vpn?style=for-the-badge&label=stars&color=orange)](https://github.com/wybzsngw/router-vpn/stargazers)
-[![License](https://img.shields.io/badge/license-Apache_2.0-10b981?style=for-the-badge)](LICENSE)
+[![Code License](https://img.shields.io/badge/代码-Apache_2.0-10b981?style=for-the-badge)](LICENSE)
+[![Docs License](https://img.shields.io/badge/教程-CC_BY_4.0-0ea5e9?style=for-the-badge)](LICENSE-docs.md)
 ![Last Updated](https://img.shields.io/badge/最近更新-2026.09-7c4dff?style=for-the-badge)
 
 本仓库提供 Cursor、ChatGPT、OpenAI API 与 OpenAI Codex 的中文实战教程，重点关注可执行步骤、工程流程、风险边界和版本核验。
@@ -54,11 +55,25 @@ Gemini CLI 尚未建档，因此不列入教程主表。本仓库目前也没有
 - OpenAI、ChatGPT、Codex、Cursor 等名称与商标归各自权利人所有；本项目为非官方中文教程，不代表相关厂商。
 - 内容由 AI 辅助起草；发布前应由维护者依据官方资料完成人工复核。实际使用前仍应核对最新官方资料和产品界面。
 
+## 许可与转载
+
+本仓库采用双许可：
+
+| 部分 | 许可 | 说明 |
+| --- | --- | --- |
+| `scripts/` 等代码 | [Apache-2.0](LICENSE) | 保留版权与许可声明即可使用 |
+| 教程正文与原创示例 | [CC BY 4.0](LICENSE-docs.md) | 可转载、改编、商用，但必须署名并链回原文 |
+
+转载教程正文时，请标明原作者 `wybzsngw`、原文链接、CC BY 4.0 协议，改动过的还需说明「有修改」。详细范围、例外情形与署名格式见 [LICENSE-docs.md](LICENSE-docs.md)。
+
+文中标注出处的第三方引用内容，以及各厂商的名称与商标，不在上述授权范围内。
+
 ## 更新日志
 
 ### 2026 年 9 月
 
 - 全面校准 ChatGPT/OpenAI API 与 Cursor 教程。
+- 澄清许可：代码沿用 Apache-2.0，教程正文改为 CC BY 4.0，并补充转载说明。
 - 新增 OpenAI Codex 专题入口与 4 篇核心教程。
 - 更新仓库定位、目录结构、内容原则和非官方声明。
 - 修正首页教程链接，并明确 Markdown 为当前有效内容载体、静态站暂停。
