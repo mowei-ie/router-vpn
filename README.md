@@ -24,6 +24,7 @@ Gemini CLI 尚未建档，因此不列入教程主表。本仓库目前也没有
 - [Codex CLI 快速上手：Windows 与 PowerShell 主线](codex/codex-cli-quickstart.md)
 - [从任务到 Git 交付：一套可审阅的 Codex 工作流](codex/codex-workflow.md)
 - [Codex 定制指南：指令、配置、技能与自动化](codex/codex-customization.md)
+- [在 OpenAI Codex 中使用 DeepSeek：安全配置、验证与回滚](codex/codex-deepseek-guide.md)
 
 ### Cursor 实战连载
 
@@ -75,6 +76,7 @@ Gemini CLI 尚未建档，因此不列入教程主表。本仓库目前也没有
 - 全面校准 ChatGPT/OpenAI API 与 Cursor 教程。
 - 澄清许可：代码沿用 Apache-2.0，教程正文改为 CC BY 4.0，并补充转载说明。
 - 新增 OpenAI Codex 专题入口与 4 篇核心教程。
+- 新增 DeepSeek 接入 Codex 进阶教程，覆盖安全配置、验证、费用边界与回滚。
 - 更新仓库定位、目录结构、内容原则和非官方声明。
 - 修正首页教程链接，并明确 Markdown 为当前有效内容载体、静态站暂停。
 
