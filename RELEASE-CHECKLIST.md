@@ -1,6 +1,8 @@
 # 上线操作清单（需账号权限，手动执行）
 
-> 本文件汇总所有需要 Cloudflare / GitHub 账号权限才能完成的操作。代码类工作已通过 PR 分支推送，不在此清单内。请按顺序执行，每完成一项就打勾。
+> 本文件汇总所有需要 Cloudflare / GitHub 账号权限才能完成的操作。代码类工作已通过 `feat/site-relaunch` 分支推送，不在此清单内。请按顺序执行，每完成一项就打勾。
+>
+> 配套文档：环境变量/凭证申请步骤见 [SETUP.md](SETUP.md)；内容选题差距分析与 AdSense 内容量参考见 [CONTENT-GROWTH-NOTES.md](CONTENT-GROWTH-NOTES.md)。
 
 ## 1. Cloudflare Pages 核实（对应计划步骤 1）
 
