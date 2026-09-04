@@ -17,11 +17,13 @@ const breadcrumbs = [
   { name: "首页", url: "/" },
   { name: "标签索引", url: "/tags/" },
 ];
+
+const description = `标签索引：本页汇总本站全部 ${articles.length} 篇教程按 ${tags.length} 个主题标签的分类入口，覆盖 Cursor、ChatGPT、OpenAI API 与 OpenAI Codex 相关的套餐定价、模型选择、Agent 与安全审批、部署上线、系统排障等主题，点击任意标签即可查看该主题下的全部教程列表，方便你按兴趣快速定位内容。`;
 ---
 
 <BaseLayout
-  title="标签索引"
-  description="标签索引：按标签浏览 AI 编程实战教程站的全部文章，覆盖 Cursor、ChatGPT、OpenAI API 与 OpenAI Codex 相关的套餐、模型、Agent、部署、安全审批等主题标签，方便你按兴趣主题快速定位相关教程内容。"
+  title="全部标签索引：按主题快速浏览教程内容"
+  description={description}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-900">标签索引</h1>
