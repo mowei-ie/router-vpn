@@ -1,3 +1,14 @@
+---
+title: "Cursor 远程开发实战：通过 SSH 连接 Linux（自建 + 云服务器通用篇）"
+description: "通用型远程开发教程：讲解 Cursor Remote-SSH 的底层原理与三条网络路径边界，覆盖树莓派、本地虚拟机、LXC 容器等自建 Linux 与阿里云、腾讯云、AWS 云服务器的 SSH Key 配置、跳板机跳转、Cursor 中添加远程主机与远端 Agent 使用方法，并附常见连接报错的排查步骤。"
+pubDate: "2026-07-23T11:58:47+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "cursor"
+tags: ["Cursor", "SSH远程开发", "Remote-SSH", "云服务器"]
+draft: false
+order: 3
+---
+
 # Cursor 远程开发实战：通过 SSH 连接 Linux（自建 + 云服务器通用篇）
 
 > [Cursor 推广链接](https://cursor.com/referral?code=Y3RXKKUGMJ2G)：优惠与适用条件以结账页实际显示为准。

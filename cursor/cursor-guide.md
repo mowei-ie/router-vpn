@@ -1,3 +1,14 @@
+---
+title: "Cursor 2026 使用指南：套餐、模型、Agent 与安全"
+description: "Cursor 2026 主指南：讲解个人与团队套餐定价、Cursor Models 与 Other Models 两个用量池、常见模型场景、Agent／Ask／Plan 三种交互模式，以及 Rules、Skills、MCP、Cloud Agents、CLI 的分工边界与 Run Modes 审批执行安全机制。"
+pubDate: "2026-07-23T11:58:47+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "cursor"
+tags: ["Cursor", "套餐与定价", "模型", "Agent", "安全审批"]
+draft: false
+order: 1
+---
+
 # Cursor 2026 使用指南：套餐、模型、Agent 与安全
 
 > [Cursor 推广链接](https://cursor.com/referral?code=Y3RXKKUGMJ2G)：是否有优惠、优惠金额与适用套餐，以结账页实际显示为准。

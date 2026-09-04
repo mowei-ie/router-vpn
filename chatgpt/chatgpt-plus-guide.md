@@ -1,3 +1,14 @@
+---
+title: "ChatGPT 订阅指南：Free、Go、Plus 与 Pro"
+description: "帮助中文用户理性选择 ChatGPT 个人订阅方案：对比 Free、Go、Plus、Pro $100、Pro $200 五档方案的定位与权益差异，说明订阅前应在账户内核对哪些信息、如何通过官方页面完成订阅与账单管理，并解答 Plus 是否包含 API 额度、使用量是否固定等常见疑问，避免依赖过时说法。"
+pubDate: "2026-07-23T11:58:47+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "chatgpt"
+tags: ["ChatGPT", "订阅方案", "账单管理"]
+draft: false
+order: 1
+---
+
 # ChatGPT 订阅指南：Free、Go、Plus 与 Pro
 
 本文帮助你按实际需求理解 ChatGPT 个人方案、在账户内核对权益，以及处理订阅和账单问题。功能、使用上限、币种、税费与可购买方案会随账户和地区变化，不能仅凭本文判断某项服务在你所在地是否可用。

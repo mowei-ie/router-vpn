@@ -1,3 +1,14 @@
+---
+title: "Codex 定制指南：指令、配置、技能与自动化"
+description: "按职责分层讲解 Codex 的定制体系：AGENTS.md 写持久项目指令、config.toml 控制运行策略、profile 切换场景配置、Skill 封装重复流程、MCP 连接外部工具，再到 plugin 分发、subagent 拆分任务与 automation 后台调度，并给出组合建议与跨入口共享边界说明。"
+pubDate: "2026-09-03T15:42:03+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "codex"
+tags: ["OpenAI Codex", "AGENTS.md", "配置定制", "MCP", "自动化"]
+draft: false
+order: 4
+---
+
 # Codex 定制指南：指令、配置、技能与自动化
 
 Codex 的定制不是把所有偏好塞进一个超长提示。更稳妥的做法是按职责分层：用 `AGENTS.md` 写项目约束，用 `config.toml` 控制运行策略，用 Skill 封装重复流程，用 MCP 连接外部工具，再按需要引入 plugin、subagent 和 automation。

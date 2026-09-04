@@ -1,3 +1,14 @@
+---
+title: "Cursor Agent 实战：用 AI 写一个完整的全栈小应用"
+description: "以「短链生成器」为例的全栈实战：用 Cursor Agent 依次完成需求文档、React 前端与 Express + SQLite 后端项目骨架生成、前后端分轮迭代联调，再把前端部署到 Cloudflare Pages、后端部署到阿里云 ECS 并处理跨域配置，完整展示提示词驱动的全栈开发与部署流程。"
+pubDate: "2026-07-23T11:58:47+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "cursor"
+tags: ["Cursor", "全栈开发", "React", "Express", "部署"]
+draft: false
+order: 5
+---
+
 # Cursor Agent 实战：用 AI 写一个完整的全栈小应用
 
 > [Cursor 推广链接](https://cursor.com/referral?code=Y3RXKKUGMJ2G)：优惠与适用条件以结账页实际显示为准。

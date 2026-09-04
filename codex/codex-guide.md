@@ -1,3 +1,14 @@
+---
+title: "认识 OpenAI Codex：入口、登录与工具边界"
+description: "系统梳理 OpenAI Codex 的产品版图：区分 ChatGPT 桌面端、Codex Web/Cloud、CLI、IDE 扩展与移动端入口差异，对比 ChatGPT 登录与 API key 登录两条路径的计费权限边界，并厘清 Codex 与 ChatGPT、OpenAI API、Cursor 的关系与选型建议。"
+pubDate: "2026-09-03T15:42:03+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "codex"
+tags: ["OpenAI Codex", "产品入口", "账号登录"]
+draft: false
+order: 1
+---
+
 # 认识 OpenAI Codex：入口、登录与工具边界
 
 Codex 是 OpenAI 面向软件开发的 Agent。和只回答“这段代码是什么意思”的聊天助手不同，它可以在获得上下文与权限后，读取仓库、编辑文件、执行构建或测试命令，并把结果整理成可审阅的改动。它不是无人监管的开发者：任务范围、权限、验证标准和最终交付责任仍在人。

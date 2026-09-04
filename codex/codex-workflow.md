@@ -1,3 +1,14 @@
+---
+title: "从任务到 Git 交付：一套可审阅的 Codex 工作流"
+description: "以「新增故障排查文档」为贯穿案例，讲解一套可审阅的 Codex 工程交付流程：先划定 sandbox 与 approval policy 安全边界，再依次建立上下文、制定计划、局部编辑、分层验证、审阅 diff，最后由人工完成 Git 提交与推送，并说明本地、Cloud 与 GitHub、Slack 集成如何分工协作。"
+pubDate: "2026-09-03T15:42:03+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "codex"
+tags: ["OpenAI Codex", "工程工作流", "Git", "代码审阅"]
+draft: false
+order: 3
+---
+
 # 从任务到 Git 交付：一套可审阅的 Codex 工作流
 
 “让 Agent 把文档更新一下”缺少范围、事实来源和完成标准。可靠工作流应把任务拆成能检查的状态变化：建立上下文、形成计划、局部编辑、运行验证、审阅 diff，最后由人完成 Git 交付。

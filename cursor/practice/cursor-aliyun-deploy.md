@@ -1,3 +1,14 @@
+---
+title: "Cursor + 阿里云 ECS 实战：从写代码到上线 Web 应用全流程"
+description: "实战教程：用 Cursor 远程连接阿里云 ECS，从零生成 Node.js Express 应用，依次配置 Nginx 反向代理、PM2 守护进程、Let's Encrypt SSL 证书、域名解析与备案要点，并接入 GitHub Actions 实现推送后自动部署，适合个人开发者独立上线 Web 应用。"
+pubDate: "2026-07-23T11:58:47+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "cursor"
+tags: ["Cursor", "阿里云ECS", "Nginx", "PM2", "GitHub Actions"]
+draft: false
+order: 4
+---
+
 # Cursor + 阿里云 ECS 实战：从写代码到上线 Web 应用全流程
 
 > [Cursor 推广链接](https://cursor.com/referral?code=Y3RXKKUGMJ2G)：优惠与适用条件以结账页实际显示为准。

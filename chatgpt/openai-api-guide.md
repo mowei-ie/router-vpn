@@ -1,3 +1,14 @@
+---
+title: "OpenAI API 入门：Responses API、密钥与成本控制"
+description: "面向首次接入 OpenAI API 的开发者：讲解 API 与 ChatGPT 订阅的区别、如何创建并安全保管 API key、用 Responses API 完成 JavaScript 与 curl 最小调用示例，理解 token 与工具计费方式，并给出模型价格快照、预算控制方法与上线前的安全检查清单。"
+pubDate: "2026-07-23T11:58:47+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "chatgpt"
+tags: ["OpenAI API", "Responses API", "API密钥", "成本控制"]
+draft: false
+order: 2
+---
+
 # OpenAI API 入门：Responses API、密钥与成本控制
 
 本文面向第一次把 OpenAI 接入服务端程序的开发者。推荐从 Responses API 开始：先安全保存 API key，完成一次最小调用，再设置预算和用量监控。API 的可用地区、模型、限额与价格会变化，部署前应重新查阅官方页面。

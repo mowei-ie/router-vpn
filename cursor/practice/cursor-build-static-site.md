@@ -1,3 +1,14 @@
+---
+title: "用 Cursor 上线自己的网站：GitHub Pages + 自定义域名全流程"
+description: "零基础教程：用 Cursor Agent 对话生成个人静态网站，通过编辑器内置 Git 面板推送到 GitHub 并开启 GitHub Pages 免费托管，再在 Cloudflare 注册域名、配置 DNS 记录绑定自定义域名，最后说明用 Agent 持续维护网站内容、样式与新增页面的日常协作方法与成本预算。"
+pubDate: "2026-07-23T11:58:47+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "cursor"
+tags: ["Cursor", "GitHub Pages", "自定义域名", "建站"]
+draft: false
+order: 2
+---
+
 # 用 Cursor 上线自己的网站：GitHub Pages + 自定义域名全流程
 
 > [Cursor 推广链接](https://cursor.com/referral?code=Y3RXKKUGMJ2G)：优惠与适用条件以结账页实际显示为准。

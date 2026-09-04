@@ -1,3 +1,14 @@
+---
+title: "Tailscale 使用手册（ESXi 远程访问）"
+description: "在没有公网 IP 的情况下，用 Tailscale 安全访问远端 ESXi 管理界面的实用手册：给出仅发布主机 /32 路由与 Tailscale Serve 端口代理两种方案，覆盖 Rocky Linux 上的安装与登录授权、Windows 客户端配置、ACL 最小暴露原则与常见连接问题的排查思路。"
+pubDate: "2026-07-23T11:58:47+08:00"
+updatedDate: "2026-07-23T11:58:47+08:00"
+category: "extras"
+tags: ["Tailscale", "ESXi", "远程访问", "内网穿透"]
+draft: false
+order: 2
+---
+
 # Tailscale 使用手册（ESXi 远程访问）
 
 目标：在没有公网 IP 的情况下，通过 Tailscale 安全访问远端 ESXi，仅暴露 ESXi 单个地址或必要端口。

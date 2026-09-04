@@ -1,3 +1,14 @@
+---
+title: "Codex CLI 快速上手：Windows 与 PowerShell 主线"
+description: "以 Windows 10/11 与 PowerShell 为主线的 Codex CLI 上手教程：完成 npm 安装与升级、ChatGPT 与 API key 两种登录方式，动手练习一个「审阅并修正文档链接」的低风险任务，介绍 /init、/review、/mcp 等常用斜杠命令，并列出常见报错的排查方法。"
+pubDate: "2026-09-03T15:42:03+08:00"
+updatedDate: "2026-09-03T15:42:03+08:00"
+category: "codex"
+tags: ["OpenAI Codex", "Codex CLI", "Windows", "PowerShell"]
+draft: false
+order: 2
+---
+
 # Codex CLI 快速上手：Windows 与 PowerShell 主线
 
 本篇从一个全新终端开始，让 Codex 在明确限制下检查并修正文档链接。主线适用于 Windows 10/11 与 PowerShell；macOS/Linux 的差异集中说明。
