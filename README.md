@@ -93,6 +93,11 @@ Gemini CLI 尚未建档，因此不列入教程主表。本仓库目前也没有
 
 本教程仅供学习和研究使用。请遵守所在地法律法规、组织政策及各产品服务条款，并自行评估命令执行、账号、费用和数据安全风险。
 
+## 站点配置
+
+新版 Astro 站点（`feat/site-relaunch` 分支）用到几个可选环境变量（Google Search Console 验证、Cloudflare Web Analytics、广告开关），
+默认都不设置也能正常构建。凭证获取方式、如何填入见 [SETUP.md](SETUP.md)。
+
 ## 反馈与贡献
 
 - 文档问题请提交 [Issue](https://github.com/wybzsngw/router-vpn/issues)。
