@@ -2,7 +2,7 @@
   "name": "router-vpn",
   "version": "1.0.0",
   "description": "AI 编程实战教程：Cursor / ChatGPT Plus / OpenAI API / OpenAI Codex",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
