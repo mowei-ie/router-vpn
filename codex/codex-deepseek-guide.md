@@ -1,5 +1,5 @@
 ---
-title: "在 OpenAI Codex 中使用 DeepSeek：安全配置、验证与回滚"
+title: "Codex 接入 DeepSeek：安全配置、验证与回滚"
 description: "第三方模型接入进阶篇：说明在 OpenAI Codex 中接入 DeepSeek 涉及的外壳层与模型层数据边界，通过独立 profile 隔离配置、安全备份整个 CODEX_HOME、用 env_key 而非明文写入密钥，并给出分层验证顺序、常见故障排查方法与可撤销回滚的完整操作步骤与安全检查清单。"
 pubDate: "2026-09-03T16:49:20+08:00"
 updatedDate: "2026-09-03T16:49:20+08:00"
@@ -9,7 +9,7 @@ draft: false
 order: 5
 ---
 
-# 在 OpenAI Codex 中使用 DeepSeek：安全配置、验证与回滚
+# Codex 接入 DeepSeek：安全配置、验证与回滚
 
 把 DeepSeek 接入 Codex，实际组合的是两层能力：
 

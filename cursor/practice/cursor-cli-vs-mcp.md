@@ -1,5 +1,5 @@
 ---
-title: "MCP 没死：Cursor Agent 中 CLI、MCP、Rules 与 Skills 的取舍"
+title: "MCP 没死：CLI、MCP、Rules 与 Skills 的取舍"
 description: "深入辨析 Cursor Agent 中 Rules、AGENTS.md、Skills、CLI 与 MCP 五个概念的边界与协作关系，结合作者经验说明为何日常任务里坚持 CLI 优先、MCP 补位，并从上下文成本、可复现性、信任边界、执行安全等多个维度给出工具选型的实际判断标准，帮助读者理性取舍不盲从结论。"
 pubDate: "2026-07-23T11:58:47+08:00"
 updatedDate: "2026-09-03T15:42:03+08:00"
@@ -9,7 +9,7 @@ draft: false
 order: 6
 ---
 
-# MCP 没死：Cursor Agent 中 CLI、MCP、Rules 与 Skills 的取舍
+# MCP 没死：CLI、MCP、Rules 与 Skills 的取舍
 
 > [Cursor 推广链接](https://cursor.com/referral?code=Y3RXKKUGMJ2G)：优惠与适用条件以结账页实际显示为准。
 
