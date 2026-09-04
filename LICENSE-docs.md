@@ -43,7 +43,7 @@
 示例：
 
 ```text
-本文改编自 wybzsngw/router-vpn（https://github.com/wybzsngw/router-vpn），
+本文改编自 wybzsngw/ai-tools-guide（https://github.com/wybzsngw/ai-tools-guide），
 依据 CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）授权使用，内容有删改。
 ```
 

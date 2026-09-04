@@ -1,5 +1,5 @@
 {
-  "name": "router-vpn",
+  "name": "ai-tools-guide",
   "version": "1.0.0",
   "description": "AI 编程实战教程：Cursor / ChatGPT Plus / OpenAI API / OpenAI Codex",
   "type": "commonjs",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wybzsngw/router-vpn.git"
+    "url": "git+https://github.com/wybzsngw/ai-tools-guide.git"
   },
   "keywords": [
     "astro",
@@ -31,9 +31,9 @@
   "author": "wybzsngw",
   "license": "Apache-2.0 AND CC-BY-4.0",
   "bugs": {
-    "url": "https://github.com/wybzsngw/router-vpn/issues"
+    "url": "https://github.com/wybzsngw/ai-tools-guide/issues"
   },
-  "homepage": "https://github.com/wybzsngw/router-vpn#readme",
+  "homepage": "https://github.com/wybzsngw/ai-tools-guide#readme",
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.0",
     "@astrojs/sitemap": "^3.7.4",
