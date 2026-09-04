@@ -1,0 +1,65 @@
+---
+/**
+ * ConsentBanner.astro
+ *
+ * 首次访问时在页面底部提示"本站使用分析与广告 Cookie"，提供同意/拒绝两个按钮。
+ * 纯 localStorage 记忆同意状态，不依赖任何第三方同意管理 SDK。
+ * 广告适配层（AdSlot）和隐私友好分析（Analytics）都监听同一个同意状态，
+ * 拒绝时不加载对应脚本；同意后如果当前页面还在，会实时补充加载。
+ */
+---
+
+<div
+  id="consent-banner"
+  class="fixed inset-x-0 bottom-0 z-50 hidden border-t border-slate-200 bg-white/95 px-4 py-4 shadow-[0_-4px_12px_rgba(0,0,0,0.08)] backdrop-blur sm:px-6"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Cookie 同意提示"
+>
+  <div class="mx-auto flex max-w-5xl flex-col items-center gap-3 text-sm text-slate-700 sm:flex-row sm:justify-between">
+    <p class="leading-6">
+      本站使用分析与广告 Cookie：分析用于统计访问情况，广告 Cookie 仅在部分地区、部分广告商可用时才会生效。
+      详见<a class="underline hover:text-sky-700" href="/privacy/">隐私政策</a>。
+    </p>
+    <div class="flex shrink-0 gap-2">
+      <button
+        type="button"
+        id="consent-decline"
+        class="rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100"
+      >
+        拒绝
+      </button>
+      <button
+        type="button"
+        id="consent-accept"
+        class="rounded-full bg-sky-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-sky-700"
+      >
+        同意
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { getConsent, setConsent } from "../lib/consent-client.js";
+
+  const banner = document.getElementById("consent-banner");
+  const acceptBtn = document.getElementById("consent-accept");
+  const declineBtn = document.getElementById("consent-decline");
+
+  if (banner && acceptBtn && declineBtn) {
+    if (getConsent() === null) {
+      banner.classList.remove("hidden");
+    }
+
+    acceptBtn.addEventListener("click", () => {
+      setConsent("granted");
+      banner.classList.add("hidden");
+    });
+
+    declineBtn.addEventListener("click", () => {
+      setConsent("denied");
+      banner.classList.add("hidden");
+    });
+  }
+</script>

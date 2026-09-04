@@ -1,0 +1,50 @@
+---
+/**
+ * Analytics.astro
+ *
+ * 接入 Cloudflare Web Analytics（无 cookie、免费，和 Cloudflare Pages 托管天然契合）。
+ * - 未配置 PUBLIC_CF_BEACON_TOKEN 环境变量时，什么都不渲染，不会加载任何脚本。
+ * - 配置了 token 时，只有访客同意 Cookie（ConsentBanner）后才真正注入 Cloudflare 官方
+ *   beacon 脚本；访客还没做出选择、或选择了"拒绝"时不加载。
+ *   如果访客在当前页面停留期间点击"同意"，会实时补充加载，不需要刷新页面。
+ *
+ * token 从哪里获取见仓库根目录 SETUP.md。
+ */
+const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
+---
+
+{
+  beaconToken && (
+    <div id="cf-beacon-config" data-token={beaconToken} class="hidden" aria-hidden="true" />
+  )
+}
+
+{
+  beaconToken && (
+    <script>
+      import { getConsent, onConsentChange } from "../lib/consent-client.js";
+
+      const configEl = document.getElementById("cf-beacon-config");
+      const token = configEl ? configEl.dataset.token : null;
+
+      let loaded = false;
+      function loadBeacon() {
+        if (loaded || !token) return;
+        loaded = true;
+        const script = document.createElement("script");
+        script.src = "https://static.cloudflareinsights.com/beacon.min.js";
+        script.defer = true;
+        script.setAttribute("data-cf-beacon", JSON.stringify({ token }));
+        document.body.appendChild(script);
+      }
+
+      if (getConsent() === "granted") {
+        loadBeacon();
+      } else {
+        onConsentChange((value) => {
+          if (value === "granted") loadBeacon();
+        });
+      }
+    </script>
+  )
+}

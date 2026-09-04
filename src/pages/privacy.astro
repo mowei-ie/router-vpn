@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description =
+  "AI 编程实战教程站的隐私政策：说明本站使用的分析工具（Cloudflare Web Analytics）、可能出现的广告 Cookie（如 AdSense）、如何选择退出，以及本站不采集不必要个人数据的承诺，帮助你了解自己的数据会被如何使用。";
+
+const breadcrumbs = [
+  { name: "首页", url: "/" },
+  { name: "隐私政策", url: "/privacy/" },
+];
+---
+
+<BaseLayout title="隐私政策" description={description} breadcrumbs={breadcrumbs}>
+  <article class="prose-article">
+    <h1 class="text-3xl font-bold text-slate-900">隐私政策</h1>
+    <p>
+      本页说明 AI 编程实战教程站会使用哪些分析与广告相关的技术、这些技术会不会采集你的个人数据，
+      以及你可以如何选择退出。本站的原则是：<strong>不采集超出运营站点所必需的个人数据</strong>。
+    </p>
+
+    <h2>本站使用的分析工具</h2>
+    <p>
+      本站使用 <strong>Cloudflare Web Analytics</strong> 统计访问情况。这是一个无 Cookie、隐私友好的分析服务：
+      它不通过客户端存储或跨站指纹跟踪你，只统计聚合层面的访问量、页面路径、来源等信息，帮助我们了解哪些内容对读者有帮助。
+    </p>
+    <ul>
+      <li>该分析脚本只会在<strong>你同意 Cookie</strong>（见下方"同意管理"一节）之后才会加载。</li>
+      <li>如果本站还没有配置 Cloudflare Web Analytics 的 beacon token，页面上完全不会加载任何分析脚本。</li>
+    </ul>
+
+    <h2>可能出现的广告 Cookie</h2>
+    <p>
+      本站预留了广告位（<code>AdSlot</code> 组件），面向海外中文流量探索 Google AdSense 等广告合作方，
+      目前<strong>尚未接入任何真实广告商</strong>。如果未来正式启用广告：
+    </p>
+    <ul>
+      <li>
+        广告脚本可能会设置用于个性化广告的 Cookie（例如 AdSense 会使用 Google 相关域名的 Cookie）。
+        这类 Cookie 由广告合作方按其自身的隐私政策处理，本站不会读取或转卖这些 Cookie 里的数据。
+      </li>
+      <li>
+        考虑到 <code>adsense.googleapis.com</code> 等域名在中国大陆网络环境下常规不可达，广告只面向能够正常加载这些资源的海外流量；
+        大陆访客即使广告位开启也大概率看不到任何广告内容（表现为空白占位），不会因此影响页面正常浏览。
+      </li>
+      <li>广告脚本同样只会在你同意 Cookie 之后才会加载；拒绝或未做选择时，广告位保持空白占位。</li>
+    </ul>
+
+    <h2>同意管理与如何选择退出</h2>
+    <p>首次访问本站时，页面底部会出现一个 Cookie 同意提示，你可以选择"同意"或"拒绝"：</p>
+    <ul>
+      <li><strong>拒绝</strong>：本站不会加载 Cloudflare Web Analytics 分析脚本，广告位也保持空白占位，不加载任何广告相关脚本。</li>
+      <li><strong>同意</strong>：本站会按上述范围加载分析脚本，并在广告商正式接入后展示广告。</li>
+      <li>
+        你的选择只保存在浏览器本地存储（<code>localStorage</code>）中，本站服务器不会记录这个选择。
+        如果想重新做出选择，清除该站点的浏览器本地存储/网站数据即可，下次访问会重新出现同意提示。
+      </li>
+      <li>
+        你也可以随时使用浏览器自带的隐私设置、广告拦截插件或 Do Not Track 功能，进一步限制分析与广告相关请求，
+        这些方式不依赖本站的同意提示，独立生效。
+      </li>
+    </ul>
+
+    <h2>不采集不必要个人数据的承诺</h2>
+    <ul>
+      <li>本站不要求注册账号，不设置登录态 Cookie，不采集姓名、邮箱、手机号等身份信息。</li>
+      <li>本站不会把分析或广告相关的数据与你的真实身份关联，也不会将这些数据出售给第三方。</li>
+      <li>本站没有评论区或表单，不会主动收集你主动提交的文本内容。</li>
+      <li>
+        如果你通过 <a href="https://github.com/wybzsngw/router-vpn/issues" rel="noopener noreferrer">GitHub Issue</a>
+        反馈问题，相关信息由 GitHub 按其自身隐私政策处理，不在本站控制范围内。
+      </li>
+    </ul>
+
+    <h2>政策更新</h2>
+    <p>
+      随着本站接入的分析/广告工具发生变化，本页内容会相应更新。建议关注文末的最后核验日期。
+      本站为非官方中文教程，本页不构成法律意见；如有更严格的合规需求，请以你所在地区的法律法规为准。
+    </p>
+
+    <p class="mt-6 text-slate-500">
+      如对本页内容有疑问，欢迎通过
+      <a href="https://github.com/wybzsngw/router-vpn/issues" rel="noopener noreferrer">GitHub Issue</a>
+      反馈。另见 <a href="/disclaimer/">免责声明</a> 与 <a href="/license/">许可与转载</a>。
+    </p>
+  </article>
+</BaseLayout>
