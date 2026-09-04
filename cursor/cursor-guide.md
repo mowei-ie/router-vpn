@@ -7,6 +7,8 @@ category: "cursor"
 tags: ["Cursor", "套餐与定价", "模型", "Agent", "安全审批"]
 draft: false
 order: 1
+reviewNotes:
+  - "套餐价格表（Hobby/Start/Pro/Pro+/Ultra/Teams Standard/Teams Premium）与模型池划分已核对 cursor.com/docs/models-and-pricing，数字与说明一致，未发现过时或错误。但截至 2026-09-04 该官方页面还提到了本文未覆盖的三处细节：① Teams/Enterprise 即将上线的「Cursor Router」（按优化模式自动选模型）；② Auto 模式实际分为 Cost/Balance/Intelligence 三档；③ Teams/Enterprise 上第三方模型请求会额外计收每百万 token $0.25 的「Cursor Token Rate」。是否补充这三点、以及如何在不改变本文结构的前提下措辞，建议维护者判断。"
 ---
 
 # Cursor 2026 使用指南：套餐、模型、Agent 与安全

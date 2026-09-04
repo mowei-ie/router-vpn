@@ -7,6 +7,8 @@ category: "chatgpt"
 tags: ["OpenAI API", "Responses API", "API密钥", "成本控制"]
 draft: false
 order: 2
+reviewNotes:
+  - "「2026-09-03 模型价格快照」表格里 gpt-5.6-sol/terra/luna 三档价格已核对 developers.openai.com/api/docs/pricing，数字一致，未发现过时或错误。但截至 2026-09-04 该官方定价页新增了一个价格更高的 gpt-6-astra 型号（短上下文 $10 输入/$50 输出），本文未提及；是否需要补充覆盖属于选题范围的编辑判断，建议维护者结合读者定位决定是否更新快照表格。"
 ---
 
 # OpenAI API 入门：Responses API、密钥与成本控制

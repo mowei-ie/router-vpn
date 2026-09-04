@@ -2,7 +2,7 @@
 title: "ChatGPT 订阅指南：Free、Go、Plus 与 Pro"
 description: "帮助中文用户理性选择 ChatGPT 个人订阅方案：对比 Free、Go、Plus、Pro $100、Pro $200 五档方案的定位与权益差异，说明订阅前应在账户内核对哪些信息、如何通过官方页面完成订阅与账单管理，并解答 Plus 是否包含 API 额度、使用量是否固定等常见疑问，避免依赖过时说法。"
 pubDate: "2026-07-23T11:58:47+08:00"
-updatedDate: "2026-09-03T15:42:03+08:00"
+updatedDate: "2026-09-04T13:00:00+08:00"
 category: "chatgpt"
 tags: ["ChatGPT", "订阅方案", "账单管理"]
 draft: false
@@ -30,7 +30,7 @@ order: 1
 | 方案 | 美元月费 | 主要定位 |
 | --- | ---: | --- |
 | Free | $0 | 基础使用；消息、上传、图像和高级工具通常采用较低的动态限额 |
-| Go | 以账户内价格为准 | 面向希望获得高于 Free 使用量、但不需要完整高级权益的用户 |
+| Go | $8（美元基准价，部分地区提供本地化定价） | 面向希望获得高于 Free 使用量、但不需要完整高级权益的用户 |
 | Plus | $20/月 | 提供更高使用量，并扩大对高级模型和工具的访问 |
 | Pro $100 | $100/月 | 面向高频专业使用，限额和可用能力高于 Plus |
 | Pro $200 | $200/月 | 面向最重度的个人专业工作负载，提供更高等级的访问与限额 |
@@ -100,13 +100,14 @@ order: 1
 
 ## 官方来源与说明
 
-最后核验日期：**2026-09-03**
+最后核验日期：**2026-09-04**
 
 官方资料：
 
 - [What is ChatGPT: FAQ](https://help.openai.com/en/articles/12677804-what-is-chatgpt-faq)
 - [What is ChatGPT Plus?](https://help.openai.com/en/articles/6950777)
 - [What is ChatGPT Go?](https://help.openai.com/en/articles/11989085-what-is-chatgpt-go)
+- [Introducing ChatGPT Go, now available worldwide](https://openai.com/index/introducing-chatgpt-go/)
 - [About ChatGPT Pro plans](https://help.openai.com/en/articles/9793128-about-chatgpt-pro-plans)
 
 本文是非官方中文教程，不代表 OpenAI，也不构成地区可用性、付款结果或持续功能的保证。内容由 AI 辅助编写；发布前应由维护者依据官方资料完成人工复核。如本文与账户内页面或 OpenAI 官方资料不一致，以官方信息为准。

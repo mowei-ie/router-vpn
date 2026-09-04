@@ -28,6 +28,9 @@ const articles = defineCollection({
     // 人工复核占位字段：本次迁移不虚构，默认留空。
     reviewedBy: z.string().optional(),
     reviewedAt: z.coerce.date().optional(),
+    // 复核提示（可选）：AI 辅助核查后，写清"哪一句、为什么存疑、需要核对什么"，
+    // 供维护者人工复核时参照；不代表内容已确认有误。不要在这里伪造人工复核结论。
+    reviewNotes: z.array(z.string()).optional(),
   }),
 });
 

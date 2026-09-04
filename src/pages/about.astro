@@ -1,13 +1,26 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const description =
-  "关于 AI 编程实战教程站：本站是面向海外中文读者的 AI 编程与效率工具教程站，介绍站点定位、作者 wybzsngw 的原创整理与维护方式、AI 辅助起草与人工复核的具体流程、内容原则、许可协议与版权边界，以及反馈与贡献渠道，帮助你快速判断本站的信息来源是否可信、内容是否真正值得参考并动手复现实践。";
+  "关于 AI 编程实战教程站：本站是面向海外中文读者的 AI 编程与效率工具教程站，介绍站点定位、作者 wybzsngw 的原创整理与维护方式、AI 辅助起草与人工复核的具体流程、内容复核状态、内容原则、许可协议与版权边界，以及反馈与贡献渠道，帮助你快速判断本站的信息来源是否可信、内容是否真正值得参考并动手复现实践。";
 
 const breadcrumbs = [
   { name: "首页", url: "/" },
   { name: "关于本站", url: "/about/" },
 ];
+
+const allArticles = await getCollection("articles", ({ data }) => !data.draft);
+const totalArticles = allArticles.length;
+const reviewedCount = allArticles.filter((a) => a.data.reviewedBy).length;
+const pendingReviewNotesCount = allArticles.filter(
+  (a) => (a.data.reviewNotes?.length ?? 0) > 0
+).length;
+const earliestPubDate = allArticles.reduce(
+  (min, a) => (a.data.pubDate < min ? a.data.pubDate : min),
+  allArticles[0]?.data.pubDate ?? new Date()
+);
+const dateFormatter = new Intl.DateTimeFormat("zh-CN", { year: "numeric", month: "long" });
 ---
 
 <BaseLayout title="关于本站：站点定位、作者与内容原则说明" description={description} breadcrumbs={breadcrumbs}>
@@ -22,8 +35,41 @@ const breadcrumbs = [
 
     <h2>作者</h2>
     <p>
-      本站内容由 <strong>wybzsngw</strong> 原创整理与维护。所有文章均以对应产品的官方资料为事实依据，
-      并会在文末标注"最后核验"日期，提醒读者产品能力、价格与界面可能随版本变化。
+      本站内容由 <strong>wybzsngw</strong> 原创整理与维护，自 {dateFormatter.format(earliestPubDate)}
+      起持续更新，目前共维护 {totalArticles} 篇正式教程，覆盖 Cursor、ChatGPT、OpenAI API、OpenAI Codex 四个专题。
+      所有文章均以对应产品的官方资料为事实依据，并会在文末标注"最后核验"日期，提醒读者产品能力、价格与界面可能随版本变化。
+    </p>
+    <p>
+      维护这个站点的出发点很朴素：作者本人在日常使用这些工具的过程中反复遇到"教程写法过时、结论绝对化、缺少官方来源"
+      的问题，于是决定自己动手，把每次实际踩坑和查证的过程整理成可复用的教程，而不是转述别人的说法。
+      本站不做人设包装——这里不会出现无法用仓库内容支撑的职业履历、认证或经历介绍；能公开说明的只有维护时间线、
+      文章数量、更新频率与下面这条内容原则。
+    </p>
+
+    <h2>内容复核状态</h2>
+    <p>
+      每篇文章的 frontmatter 里都保留了 <code>reviewedBy</code> 与 <code>reviewedAt</code>
+      两个字段，专门用于记录"这篇文章已经由仓库维护者本人对照官方资料完成人工复核"这件事：
+      <code>reviewedBy</code> 填写复核人，<code>reviewedAt</code> 填写复核完成的日期。
+      这两个字段<strong>只能由维护者本人在完成实际复核后手动填写</strong>，AI 辅助工具不会代替签署，
+      也不会预先填入任何值——空白就是空白，不会被伪造成"已复核"。
+    </p>
+    <p>
+      如实说明当前状态：截至本页面最近一次更新，本站 {totalArticles} 篇文章
+      {reviewedCount > 0
+        ? <>中已有 {reviewedCount} 篇完成人工复核签字，其余仍处于</>
+        : <>均处于</>}
+      "AI 辅助起草 + 待人工复核"阶段——内容在发布前经过 AI 辅助的事实核查（对照官方文档核对价格、命令、功能边界等具体信息，
+      并标注查证日期与来源链接），但尚未由维护者逐篇完成最终的人工签字复核。
+      {pendingReviewNotesCount > 0 && (
+        <>
+          其中 {pendingReviewNotesCount} 篇文章包含 <code>reviewNotes</code>
+          字段：这是 AI 辅助核查后留下的"存疑待核对"清单，会在文章页面底部以不显眼的小字块展示，
+          提醒维护者复核时重点核对哪一句、为什么存疑，而不是宣称内容已经出错。
+        </>
+      )}
+      本页面不会为了显得"更专业"而夸大复核进度，也请读者在做重要决策前，
+      始终以文中链接的官方资料和账户内实际显示为准。
     </p>
 
     <h2>内容原则与 AI 辅助说明</h2>

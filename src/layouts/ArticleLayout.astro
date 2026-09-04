@@ -12,9 +12,10 @@ interface Props {
   tags: string[];
   pubDate: Date;
   updatedDate?: Date;
+  reviewNotes?: string[];
 }
 
-const { title, description, category, tags, pubDate, updatedDate } = Astro.props;
+const { title, description, category, tags, pubDate, updatedDate, reviewNotes } = Astro.props;
 const categoryMeta = CATEGORIES[category];
 
 const dateFormatter = new Intl.DateTimeFormat("zh-CN", {
@@ -87,6 +88,17 @@ const breadcrumbs = [
          拆开中部位置需要额外的内容分段逻辑，权衡后先只在文首/文末各留一个占位，
          后续如果需要更精细的插入位置，可以在 remark 阶段按段落数插入占位标记后再处理。 -->
     <AdSlot placement="in-article" />
+
+    {reviewNotes && reviewNotes.length > 0 && (
+      <aside class="mt-10 rounded-lg border border-slate-100 bg-slate-50/60 p-4 text-xs leading-relaxed text-slate-500">
+        <p class="font-medium text-slate-500">复核提示（供维护者核对，不代表内容有误）</p>
+        <ul class="mt-2 list-disc space-y-1 pl-4">
+          {reviewNotes.map((note) => (
+            <li>{note}</li>
+          ))}
+        </ul>
+      </aside>
+    )}
 
     <ArticleCopyrightFooter updatedDate={updatedDate ?? pubDate} />
   </article>

@@ -2,11 +2,13 @@
 title: "Tailscale 使用手册（ESXi 远程访问）"
 description: "在没有公网 IP 的情况下，用 Tailscale 安全访问远端 ESXi 管理界面的实用手册：给出仅发布主机 /32 路由与 Tailscale Serve 端口代理两种方案，覆盖 Rocky Linux 上的安装与登录授权、Windows 客户端配置、ACL 最小暴露原则与常见连接问题的排查思路。"
 pubDate: "2026-07-23T11:58:47+08:00"
-updatedDate: "2026-07-23T11:58:47+08:00"
+updatedDate: "2026-09-04T13:00:00+08:00"
 category: "extras"
 tags: ["Tailscale", "ESXi", "远程访问", "内网穿透"]
 draft: false
 order: 2
+reviewNotes:
+  - "本次核查抽样验证了核心命令（curl 一键安装脚本、tailscale up --ssh --advertise-routes、tailscale set --accept-routes、tailscale serve）与当前 Tailscale 官方文档描述一致，未发现过时用法；但本文未像其余 14 篇一样逐项标注官方来源链接与「最后核验」日期，也没有对 Rocky Linux 专用 dnf 仓库地址（pkgs.tailscale.com/stable/centos/8/tailscale.repo）、firewalld 兼容性细节做逐条重新核实，建议维护者按需补充官方来源标注。"
 ---
 
 # Tailscale 使用手册（ESXi 远程访问）
