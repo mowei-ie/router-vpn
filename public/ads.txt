@@ -1,0 +1,7 @@
+# ads.txt 模板 —— 目前尚未接入任何真实广告商。
+#
+# 申请通过 Google AdSense 审核后，把下面这一行的注释去掉，并把 pub-0000000000000000
+# 换成 AdSense 后台"账号信息"里显示的真实 Publisher ID（格式固定为 pub- 加 16 位数字），
+# 标准格式说明见 https://support.google.com/adsense/answer/12171612
+#
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

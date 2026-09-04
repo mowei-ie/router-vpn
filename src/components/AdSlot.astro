@@ -1,0 +1,77 @@
+---
+/**
+ * AdSlot.astro
+ *
+ * 广告适配层骨架，本次改动不接入任何真实广告商 SDK/密钥，只搭结构：
+ * - 容器始终渲染并保留固定/响应式尺寸（预留高度），避免广告是否命中（因开关、地域等）
+ *   导致周围内容布局位移（CLS）。
+ * - provider === "none"（PUBLIC_ADS_ENABLED 未开启，或未来地域判断认为当前访客不适配
+ *   AdSense）时，容器视觉上不显示任何边框/文案（对读者是"空白但占位"，不是"消失"）。
+ * - provider === "adsense" 时，展示一个带尺寸的占位框和说明文案；真正接入 AdSense 后，
+ *   应把 data-ad-placeholder 对应节点替换为 <ins class="adsbygoogle"> 真实广告单元，
+ *   并只在访客同意 Cookie 后再在 <head> 追加官方 loader 脚本（当前不加载任何第三方脚本）。
+ */
+import { getAdProvider } from "../lib/ad-provider";
+
+export interface Props {
+  /** 广告位位置：影响预留尺寸与占位文案，不影响是否真的展示广告（由 provider 决定） */
+  placement: "in-article" | "sidebar" | "footer";
+}
+
+const { placement } = Astro.props;
+const provider = getAdProvider(Astro.request);
+
+const SIZES = {
+  "in-article": { box: "min-h-[100px] sm:min-h-[120px]", label: "文章内广告位" },
+  sidebar: { box: "min-h-[250px] max-w-[300px]", label: "侧栏广告位" },
+  footer: { box: "min-h-[90px]", label: "页脚广告位" },
+};
+const { box, label } = SIZES[placement] ?? SIZES["in-article"];
+---
+
+<div
+  class:list={[
+    "ad-slot my-6 w-full",
+    box,
+    provider === "adsense" ? "rounded-lg border border-dashed border-slate-300 bg-slate-50" : "",
+  ]}
+  data-ad-slot
+  data-ad-placement={placement}
+  data-ad-provider={provider}
+>
+  {
+    provider === "adsense" && (
+      <div
+        class="flex h-full min-h-[inherit] items-center justify-center px-4 text-center text-xs text-slate-400"
+        data-ad-placeholder
+      >
+        {label} · 需同意 Cookie 后展示广告
+      </div>
+    )
+  }
+</div>
+
+<script>
+  import { getConsent, onConsentChange } from "../lib/consent-client.js";
+
+  const LABELS: Record<string, string> = {
+    "in-article": "文章内广告位",
+    sidebar: "侧栏广告位",
+    footer: "页脚广告位",
+  };
+
+  function updateSlots(consent: string | null) {
+    document.querySelectorAll("[data-ad-placeholder]").forEach((el) => {
+      const slot = el.closest("[data-ad-slot]");
+      const placement = slot ? slot.getAttribute("data-ad-placement") : null;
+      const label = (placement && LABELS[placement]) || "广告位";
+      el.textContent =
+        consent === "granted"
+          ? `${label} · 占位（尚未接入真实广告商）`
+          : `${label} · 需同意 Cookie 后展示广告`;
+    });
+  }
+
+  updateSlots(getConsent());
+  onConsentChange(updateSlots);
+</script>
