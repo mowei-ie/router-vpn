@@ -1,0 +1,49 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-16 border-t border-slate-200 bg-white">
+  <div class="mx-auto max-w-5xl px-4 py-10 text-sm text-slate-600">
+    <div class="grid gap-8 sm:grid-cols-3">
+      <div>
+        <p class="font-semibold text-slate-900">AI 编程实战教程</p>
+        <p class="mt-2 leading-6">
+          面向中文读者的 Cursor、ChatGPT、OpenAI API 与 OpenAI Codex
+          实战教程，专注可执行步骤与风险边界。
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-slate-900">关于本站</p>
+        <ul class="mt-2 space-y-1">
+          <li><a class="hover:text-sky-700 hover:underline" href="/about/">关于本站与作者</a></li>
+          <li><a class="hover:text-sky-700 hover:underline" href="/license/">许可与转载</a></li>
+          <li><a class="hover:text-sky-700 hover:underline" href="/disclaimer/">免责声明</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-slate-900">源码与反馈</p>
+        <ul class="mt-2 space-y-1">
+          <li>
+            <a
+              class="hover:text-sky-700 hover:underline"
+              href="https://github.com/wybzsngw/router-vpn"
+              rel="noopener noreferrer"
+            >GitHub 仓库</a>
+          </li>
+          <li>
+            <a
+              class="hover:text-sky-700 hover:underline"
+              href="https://github.com/wybzsngw/router-vpn/issues"
+              rel="noopener noreferrer"
+            >反馈 Issue</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="mt-8 border-t border-slate-100 pt-6 text-xs text-slate-500">
+      © {year} wybzsngw · 教程正文采用
+      <a class="underline hover:text-sky-700" href="/license/">CC BY 4.0</a>
+      授权，代码部分采用 Apache-2.0 授权 · 内容由 AI 辅助起草，发布前应由维护者依据官方资料完成人工复核。
+    </p>
+  </div>
+</footer>

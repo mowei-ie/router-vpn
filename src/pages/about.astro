@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description =
+  "关于 AI 编程实战教程站：站点定位、作者 wybzsngw、内容原创与 AI 辅助起草说明，以及内容原则与版权边界。";
+---
+
+<BaseLayout title="关于本站" description={description}>
+  <article class="prose-article">
+    <h1 class="text-3xl font-bold text-slate-900">关于本站</h1>
+
+    <p>
+      本站是面向中文读者的 AI 编程与效率工具实战教程站，围绕 <strong>Cursor</strong>、
+      <strong>ChatGPT</strong>、<strong>OpenAI API</strong> 与 <strong>OpenAI Codex</strong>
+      四个专题，重点关注可执行的操作步骤、工程化流程、风险边界和版本核验，而不是复述官方文档或堆砌营销话术。
+    </p>
+
+    <h2>作者</h2>
+    <p>
+      本站内容由 <strong>wybzsngw</strong> 原创整理与维护。所有文章均以对应产品的官方资料为事实依据，
+      并会在文末标注"最后核验"日期，提醒读者产品能力、价格与界面可能随版本变化。
+    </p>
+
+    <h2>内容原则与 AI 辅助说明</h2>
+    <ul>
+      <li>产品能力、命令、配置、价格和支持范围以对应产品的官方资料为事实依据。</li>
+      <li>第三方教程只用于检查选题是否遗漏，不复制其表达、目录、示例、表格、图片或视觉设计。</li>
+      <li>必要的少量引用会明确标注出处并提供原始链接。</li>
+      <li>
+        OpenAI、ChatGPT、Codex、Cursor 等名称与商标归各自权利人所有；本站为非官方中文教程，不代表相关厂商。
+      </li>
+      <li>
+        内容由 AI 辅助起草；<strong>发布前应由维护者依据官方资料完成人工复核</strong>。
+        实际使用前仍应核对最新官方资料和产品界面。
+      </li>
+    </ul>
+
+    <h2>许可与转载</h2>
+    <p>
+      教程正文采用 CC BY 4.0 授权，代码部分采用 Apache-2.0 授权。转载与署名要求详见
+      <a href="/license/">许可与转载说明</a>。
+    </p>
+
+    <h2>反馈与贡献</h2>
+    <p>
+      发现内容问题或有改进建议，欢迎通过
+      <a href="https://github.com/wybzsngw/router-vpn/issues" rel="noopener noreferrer">GitHub Issue</a>
+      反馈，也欢迎提交 Pull Request。
+    </p>
+  </article>
+</BaseLayout>

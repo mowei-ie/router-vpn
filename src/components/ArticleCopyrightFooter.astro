@@ -1,0 +1,25 @@
+---
+interface Props {
+  updatedDate: Date;
+}
+
+const { updatedDate } = Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat("zh-CN", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+}).format(updatedDate);
+---
+
+<footer class="mt-12 rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
+  <p>
+    本文内容许可：
+    <a class="text-sky-700 underline hover:text-sky-900" href="/license/">CC BY 4.0</a>
+    ，原作者 <strong class="text-slate-800">wybzsngw</strong>，转载请署名并链回原文。
+  </p>
+  <p class="mt-2">
+    内容由 AI 辅助起草；发布前应由维护者依据官方资料完成人工复核。
+  </p>
+  <p class="mt-2 text-slate-500">最后核验 / 更新时间：{formattedDate}</p>
+</footer>

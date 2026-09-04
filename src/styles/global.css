@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased;
+  }
+}
+
+@layer components {
+  /* 文章正文排版：不依赖客户端 JS，纯 CSS 即可正常阅读 */
+  .prose-article {
+    @apply max-w-none text-slate-800;
+  }
+
+  .prose-article h2 {
+    @apply mt-10 mb-4 text-2xl font-bold text-slate-900 scroll-mt-24;
+  }
+
+  .prose-article h3 {
+    @apply mt-8 mb-3 text-xl font-semibold text-slate-900 scroll-mt-24;
+  }
+
+  .prose-article h4 {
+    @apply mt-6 mb-2 text-lg font-semibold text-slate-900 scroll-mt-24;
+  }
+
+  .prose-article p {
+    @apply my-4 leading-7;
+  }
+
+  .prose-article ul {
+    @apply my-4 list-disc pl-6 space-y-1;
+  }
+
+  .prose-article ol {
+    @apply my-4 list-decimal pl-6 space-y-1;
+  }
+
+  .prose-article a {
+    @apply text-sky-700 underline underline-offset-2 hover:text-sky-900;
+  }
+
+  .prose-article blockquote {
+    @apply my-4 border-l-4 border-sky-300 bg-sky-50 px-4 py-2 text-slate-700;
+  }
+
+  .prose-article code {
+    @apply rounded bg-slate-100 px-1.5 py-0.5 text-[0.9em] text-slate-800;
+  }
+
+  .prose-article pre {
+    @apply my-4 overflow-x-auto rounded-lg bg-slate-900 p-4 text-sm text-slate-100;
+  }
+
+  .prose-article pre code {
+    @apply bg-transparent p-0 text-inherit;
+  }
+
+  .prose-article table {
+    @apply my-4 w-full border-collapse overflow-x-auto text-sm;
+  }
+
+  .prose-article th,
+  .prose-article td {
+    @apply border border-slate-200 px-3 py-2 text-left align-top;
+  }
+
+  .prose-article th {
+    @apply bg-slate-100 font-semibold;
+  }
+
+  .prose-article hr {
+    @apply my-8 border-slate-200;
+  }
+}

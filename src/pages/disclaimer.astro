@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description = "AI 编程实战教程站的免责声明：内容仅供学习研究使用，请自行评估命令执行、账号、费用与数据安全风险。";
+---
+
+<BaseLayout title="免责声明" description={description}>
+  <article class="prose-article">
+    <h1 class="text-3xl font-bold text-slate-900">免责声明</h1>
+    <p>本教程仅供学习和研究使用。请遵守所在地法律法规、组织政策及各产品服务条款，并自行评估命令执行、账号、费用和数据安全风险。</p>
+    <ul>
+      <li>
+        本站为非官方中文教程，不代表 Cursor、OpenAI、ChatGPT、Codex 等任何厂商，也不使用其官方 logo 或截图。
+      </li>
+      <li>产品能力、价格、命令和配置会随版本持续变化，请以对应产品的官方文档与账户内实际界面为准。</li>
+      <li>
+        内容由 AI 辅助起草；发布前应由维护者依据官方资料完成人工复核。实际执行任何命令、授权仓库或提交代码前，
+        请结合当前官方文档、组织政策与实际情况独立判断。
+      </li>
+      <li>
+        涉及系统配置、网络安全、账号与费用的操作具有风险，本站不对因使用本站内容而产生的任何直接或间接损失承担责任。
+      </li>
+    </ul>
+    <p>
+      如发现内容有误或已过期，欢迎通过
+      <a href="https://github.com/wybzsngw/router-vpn/issues" rel="noopener noreferrer">GitHub Issue</a>
+      反馈。
+    </p>
+  </article>
+</BaseLayout>
