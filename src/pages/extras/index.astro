@@ -9,9 +9,14 @@ const meta = CATEGORIES.extras;
 const articles = (
   await getCollection("articles", ({ data }) => !data.draft && data.category === "extras")
 ).sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+
+const breadcrumbs = [
+  { name: "首页", url: "/" },
+  { name: meta.label, url: `/${meta.slug}/` },
+];
 ---
 
-<BaseLayout title={meta.label} description={meta.description}>
+<BaseLayout title={meta.label} description={meta.description} breadcrumbs={breadcrumbs}>
   <header class="mb-8">
     <h1 class="text-3xl font-bold text-slate-900">{meta.label}</h1>
     <p class="mt-2 text-slate-600">{meta.description}</p>

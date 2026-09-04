@@ -22,9 +22,17 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { entries } = Astro.props;
+
+const description = `本页聚合了 AI 编程实战教程站中标签为「${tag}」的全部 ${entries.length} 篇文章，涵盖 Cursor、ChatGPT、OpenAI API 与 OpenAI Codex 相关的实战步骤、工程流程与风险边界，方便你按这个主题标签快速查找全部相关教程内容。`;
+
+const breadcrumbs = [
+  { name: "首页", url: "/" },
+  { name: "标签索引", url: "/tags/" },
+  { name: `标签：${tag}`, url: `/tags/${encodeURIComponent(tag)}/` },
+];
 ---
 
-<BaseLayout title={`标签：${tag}`} description={`聚合了标签「${tag}」下的 ${entries.length} 篇 AI 编程实战教程文章。`}>
+<BaseLayout title={`标签：${tag}`} description={description} breadcrumbs={breadcrumbs}>
   <nav class="mb-4 text-sm text-slate-500">
     <a class="hover:text-sky-700 hover:underline" href="/tags/">全部标签</a>
   </nav>

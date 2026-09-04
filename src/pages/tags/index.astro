@@ -12,9 +12,18 @@ for (const entry of articles) {
 }
 
 const tags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+const breadcrumbs = [
+  { name: "首页", url: "/" },
+  { name: "标签索引", url: "/tags/" },
+];
 ---
 
-<BaseLayout title="标签索引" description="按标签浏览 AI 编程实战教程站的全部文章。">
+<BaseLayout
+  title="标签索引"
+  description="标签索引：按标签浏览 AI 编程实战教程站的全部文章，覆盖 Cursor、ChatGPT、OpenAI API 与 OpenAI Codex 相关的套餐、模型、Agent、部署、安全审批等主题标签，方便你按兴趣主题快速定位相关教程内容。"
+  breadcrumbs={breadcrumbs}
+>
   <h1 class="text-3xl font-bold text-slate-900">标签索引</h1>
   <p class="mt-2 text-slate-600">共 {tags.length} 个标签，点击查看对应文章列表。</p>
   <ul class="mt-6 flex flex-wrap gap-2">

@@ -1,18 +1,35 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Seo, { type SeoArticle, type SeoBreadcrumb } from "../components/Seo.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
+import Analytics from "../components/Analytics.astro";
 import "../styles/global.css";
 
 interface Props {
   title: string;
   description?: string;
+  /** 相对 site 的 OG/Twitter 配图路径，默认使用统一站点封面占位图 */
+  image?: string;
+  keywords?: string[];
+  robots?: string;
+  type?: "website" | "article";
+  isHome?: boolean;
+  article?: SeoArticle;
+  breadcrumbs?: SeoBreadcrumb[];
 }
 
-const { title, description } = Astro.props;
-
-const siteName = "AI 编程实战教程";
-const pageTitle = title === siteName ? title : `${title} · ${siteName}`;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const {
+  title,
+  description = "",
+  image,
+  keywords,
+  robots,
+  type,
+  isHome,
+  article,
+  breadcrumbs,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -20,10 +37,19 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{pageTitle}</title>
-    {description && <meta name="description" content={description} />}
-    <link rel="canonical" href={canonicalUrl} />
     <meta name="generator" content={Astro.generator} />
+    <Seo
+      title={title}
+      description={description}
+      image={image}
+      keywords={keywords}
+      robots={robots}
+      type={type}
+      isHome={isHome}
+      article={article}
+      breadcrumbs={breadcrumbs}
+    />
+    <Analytics />
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />
@@ -31,5 +57,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
       <slot />
     </main>
     <Footer />
+    <ConsentBanner />
   </body>
 </html>

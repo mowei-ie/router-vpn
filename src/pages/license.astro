@@ -2,10 +2,15 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const description =
-  "本站采用双许可：代码 Apache-2.0，教程正文 CC BY 4.0。说明适用范围、你可以做什么，以及转载署名要求与示例。";
+  "本站教程内容许可说明：代码部分采用 Apache-2.0，教程正文采用 CC BY 4.0 授权。本页说明许可适用范围、不适用范围、你可以自由共享与演绎的权利、商业使用条件、转载与改编时的署名要求与示例写法，以及涉及商标和第三方引用内容的边界，方便你合规引用本站内容。";
+
+const breadcrumbs = [
+  { name: "首页", url: "/" },
+  { name: "许可与转载", url: "/license/" },
+];
 ---
 
-<BaseLayout title="许可与转载" description={description}>
+<BaseLayout title="许可与转载" description={description} breadcrumbs={breadcrumbs}>
   <article class="prose-article">
     <h1 class="text-3xl font-bold text-slate-900">教程内容许可（CC BY 4.0）</h1>
     <p>

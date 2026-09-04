@@ -1,10 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const description = "AI 编程实战教程站的免责声明：内容仅供学习研究使用，请自行评估命令执行、账号、费用与数据安全风险。";
+const description =
+  "AI 编程实战教程站的免责声明：本站内容仅供学习和研究使用，为非官方中文教程，不代表 Cursor、OpenAI、ChatGPT、Codex 等任何厂商，产品能力与价格请以官方资料为准；执行命令、授权仓库、提交代码前请自行评估账号、费用与数据安全风险，本站不对因使用内容产生的损失承担责任。";
+
+const breadcrumbs = [
+  { name: "首页", url: "/" },
+  { name: "免责声明", url: "/disclaimer/" },
+];
 ---
 
-<BaseLayout title="免责声明" description={description}>
+<BaseLayout title="免责声明" description={description} breadcrumbs={breadcrumbs}>
   <article class="prose-article">
     <h1 class="text-3xl font-bold text-slate-900">免责声明</h1>
     <p>本教程仅供学习和研究使用。请遵守所在地法律法规、组织政策及各产品服务条款，并自行评估命令执行、账号、费用和数据安全风险。</p>

@@ -9,7 +9,9 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check-links": "node scripts/check-internal-links.mjs"
+    "check-links": "node scripts/check-internal-links.mjs",
+    "check-seo": "node scripts/check-seo.js",
+    "indexnow-submit": "node scripts/indexnow-submit.js"
   },
   "directories": {
     "doc": "docs"
@@ -34,6 +36,7 @@
   "homepage": "https://github.com/wybzsngw/router-vpn#readme",
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.0",
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.1",
     "tailwindcss": "^4.3.3"

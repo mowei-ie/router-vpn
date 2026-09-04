@@ -1,8 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description =
+  "抱歉，你访问的页面不存在或链接已经失效：可能是页面已被移动、重命名，或者你输入的网址有误。你可以返回首页，或者从 Cursor、ChatGPT、OpenAI Codex 等专题入口重新开始浏览 AI 编程实战教程站的教程内容，也欢迎通过 GitHub Issue 反馈失效链接。";
 ---
 
-<BaseLayout title="页面未找到" description="抱歉，你访问的页面不存在或已被移动。">
+<BaseLayout title="页面未找到" description={description} robots="noindex, follow">
   <div class="flex flex-col items-center justify-center py-24 text-center">
     <p class="text-sm font-semibold text-sky-600">404</p>
     <h1 class="mt-2 text-3xl font-bold text-slate-900">页面未找到</h1>

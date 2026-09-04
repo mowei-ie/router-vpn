@@ -1,0 +1,156 @@
+---
+/**
+ * Seo.astro
+ *
+ * 可复用的页面级 SEO 组件，在 <head> 内输出：
+ *   - <title> / description / canonical / keywords / robots
+ *   - Open Graph（og:*）与 Twitter Card
+ *   - 可选 Google Search Console 验证 meta（从 PUBLIC_GOOGLE_SITE_VERIFICATION 环境变量读取）
+ *   - 可选结构化数据（WebSite / Article / BreadcrumbList JSON-LD）
+ *
+ * 用法：放进各个 layout 的 <head> 内，按页面类型传入不同 props。
+ */
+import { SITE_NAME } from "../lib/site";
+
+export interface SeoBreadcrumb {
+  name: string;
+  url: string;
+}
+
+export interface SeoArticle {
+  headline: string;
+  description: string;
+  datePublished: Date;
+  dateModified?: Date;
+  /** 作者姓名，默认 wybzsngw */
+  author?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  /** 相对 site 的 OG/Twitter 配图路径，默认使用统一站点封面占位图 */
+  image?: string;
+  /** 关键词列表，未传入时使用站点默认关键词 */
+  keywords?: string[];
+  /** robots meta 内容，默认 "index, follow" */
+  robots?: string;
+  /** og:type，默认 "website"，文章页传 "article" */
+  type?: "website" | "article";
+  /** 是否输出 WebSite JSON-LD（仅首页传 true） */
+  isHome?: boolean;
+  /** 传入即输出 Article JSON-LD（文章页使用） */
+  article?: SeoArticle;
+  /** 传入且非空即输出 BreadcrumbList JSON-LD（文章页 / 分类页使用） */
+  breadcrumbs?: SeoBreadcrumb[];
+}
+
+const {
+  title,
+  description,
+  image = "/og-default.svg",
+  keywords,
+  robots = "index, follow",
+  type = "website",
+  isHome = false,
+  article,
+  breadcrumbs,
+} = Astro.props;
+
+const pageTitle = title === SITE_NAME ? title : `${title} · ${SITE_NAME}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const imageUrl = new URL(image, Astro.site).toString();
+const siteUrl = Astro.site ? Astro.site.toString() : canonicalUrl;
+
+const defaultKeywords = [
+  "AI 编程",
+  "Cursor 教程",
+  "ChatGPT 教程",
+  "OpenAI API",
+  "OpenAI Codex",
+  "AI 编程实战教程",
+];
+const keywordsContent = (keywords && keywords.length > 0 ? keywords : defaultKeywords).join(",");
+
+// Google Search Console 验证：不虚构 token，未配置环境变量时不渲染这个 meta。
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+
+// Twitter Card 类型：站点统一提供了默认封面图，因此始终按有图处理，用大图卡片。
+const twitterCard = "summary_large_image";
+
+type JsonLdGraph = Record<string, unknown>;
+const jsonLdBlocks: JsonLdGraph[] = [];
+
+if (isHome) {
+  jsonLdBlocks.push({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: siteUrl,
+    inLanguage: "zh-CN",
+  });
+}
+
+if (article) {
+  jsonLdBlocks.push({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.headline,
+    description: article.description,
+    datePublished: article.datePublished.toISOString(),
+    dateModified: (article.dateModified ?? article.datePublished).toISOString(),
+    author: {
+      "@type": "Person",
+      name: article.author ?? "wybzsngw",
+    },
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    inLanguage: "zh-CN",
+  });
+}
+
+if (breadcrumbs && breadcrumbs.length > 0) {
+  jsonLdBlocks.push({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbs.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: new URL(item.url, Astro.site).toString(),
+    })),
+  });
+}
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={keywordsContent} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={canonicalUrl} />
+
+{
+  googleSiteVerification && (
+    <meta name="google-site-verification" content={googleSiteVerification} />
+  )
+}
+
+<!-- Open Graph -->
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:type" content={type} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:locale" content="zh_CN" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content={twitterCard} />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+{
+  jsonLdBlocks.map((block) => (
+    <script type="application/ld+json" set:html={JSON.stringify(block)} is:inline />
+  ))
+}

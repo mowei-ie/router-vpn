@@ -2,10 +2,15 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const description =
-  "关于 AI 编程实战教程站：站点定位、作者 wybzsngw、内容原创与 AI 辅助起草说明，以及内容原则与版权边界。";
+  "关于 AI 编程实战教程站：本站是面向海外中文读者的 AI 编程与效率工具教程站，介绍站点定位、作者 wybzsngw 的原创整理与维护方式、AI 辅助起草与人工复核流程、内容原则、许可协议与版权边界，以及反馈与贡献渠道，帮助你快速判断本站信息来源是否可信、是否适合参考。";
+
+const breadcrumbs = [
+  { name: "首页", url: "/" },
+  { name: "关于本站", url: "/about/" },
+];
 ---
 
-<BaseLayout title="关于本站" description={description}>
+<BaseLayout title="关于本站" description={description} breadcrumbs={breadcrumbs}>
   <article class="prose-article">
     <h1 class="text-3xl font-bold text-slate-900">关于本站</h1>
 

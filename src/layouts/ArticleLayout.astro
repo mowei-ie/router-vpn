@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import ArticleCopyrightFooter from "../components/ArticleCopyrightFooter.astro";
+import AdSlot from "../components/AdSlot.astro";
 import { CATEGORIES, type Category } from "../lib/categories";
+import { SITE_AUTHOR } from "../lib/site";
 
 interface Props {
   title: string;
@@ -20,9 +22,28 @@ const dateFormatter = new Intl.DateTimeFormat("zh-CN", {
   month: "long",
   day: "numeric",
 });
+
+const breadcrumbs = [
+  { name: "首页", url: "/" },
+  { name: categoryMeta.label, url: `/${categoryMeta.slug}/` },
+  { name: title, url: Astro.url.pathname },
+];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  keywords={tags}
+  breadcrumbs={breadcrumbs}
+  article={{
+    headline: title,
+    description,
+    datePublished: pubDate,
+    dateModified: updatedDate,
+    author: SITE_AUTHOR,
+  }}
+>
   <nav class="mb-4 text-sm text-slate-500" aria-label="breadcrumb">
     <a class="hover:text-sky-700 hover:underline" href="/">首页</a>
     <span class="px-1">/</span>
@@ -55,9 +76,17 @@ const dateFormatter = new Intl.DateTimeFormat("zh-CN", {
       </ul>
     </header>
 
+    <!-- 文首广告位：不接入任何真实广告商，见 src/components/AdSlot.astro 说明。 -->
+    <AdSlot placement="in-article" />
+
     <div class="prose-article">
       <slot />
     </div>
+
+    <!-- 文末广告位。“正文中部”未额外拆分插入：正文以 <slot /> 整段渲染自 Markdown，
+         拆开中部位置需要额外的内容分段逻辑，权衡后先只在文首/文末各留一个占位，
+         后续如果需要更精细的插入位置，可以在 remark 阶段按段落数插入占位标记后再处理。 -->
+    <AdSlot placement="in-article" />
 
     <ArticleCopyrightFooter updatedDate={updatedDate ?? pubDate} />
   </article>

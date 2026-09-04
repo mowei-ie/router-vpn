@@ -1,0 +1,33 @@
+# Cloudflare Pages 静态重定向规则。
+# 只覆盖旧站 docs/pages/*.html 中与新站有一一对应关系的 9 篇内容，
+# 其余旧页面（chatgpt-guide.html 及 22 篇翻墙/路由器/机场主题旧文）主动放弃，交给 Cloudflare Pages 默认 404。
+# 每条旧路径同时覆盖 .html 后缀与不带后缀两种历史写法。
+
+/pages/cursor-guide.html /cursor/cursor-guide/ 301
+/pages/cursor-guide /cursor/cursor-guide/ 301
+
+/pages/cursor-build-static-site.html /cursor/practice/cursor-build-static-site/ 301
+/pages/cursor-build-static-site /cursor/practice/cursor-build-static-site/ 301
+
+/pages/cursor-ssh-linux.html /cursor/practice/cursor-ssh-linux/ 301
+/pages/cursor-ssh-linux /cursor/practice/cursor-ssh-linux/ 301
+
+/pages/cursor-aliyun-deploy.html /cursor/practice/cursor-aliyun-deploy/ 301
+/pages/cursor-aliyun-deploy /cursor/practice/cursor-aliyun-deploy/ 301
+
+/pages/cursor-fullstack-app.html /cursor/practice/cursor-fullstack-app/ 301
+/pages/cursor-fullstack-app /cursor/practice/cursor-fullstack-app/ 301
+
+/pages/cursor-cli-vs-mcp.html /cursor/practice/cursor-cli-vs-mcp/ 301
+/pages/cursor-cli-vs-mcp /cursor/practice/cursor-cli-vs-mcp/ 301
+
+/pages/cursor-fix-windows-system.html /cursor/system-ops/cursor-fix-windows-system/ 301
+/pages/cursor-fix-windows-system /cursor/system-ops/cursor-fix-windows-system/ 301
+
+/pages/chatgpt-plus-guide.html /chatgpt/chatgpt-plus-guide/ 301
+/pages/chatgpt-plus-guide /chatgpt/chatgpt-plus-guide/ 301
+
+/pages/openai-api-guide.html /chatgpt/openai-api-guide/ 301
+/pages/openai-api-guide /chatgpt/openai-api-guide/ 301
+
+/index.html / 301
