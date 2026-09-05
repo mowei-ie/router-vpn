@@ -4,6 +4,7 @@ import ArticleCopyrightFooter from "../components/ArticleCopyrightFooter.astro";
 import AdSlot from "../components/AdSlot.astro";
 import { CATEGORIES, type Category } from "../lib/categories";
 import { SITE_AUTHOR } from "../lib/site";
+import { tagSlug } from "../lib/tag-stats.mjs";
 
 interface Props {
   title: string;
@@ -67,7 +68,7 @@ const breadcrumbs = [
         {tags.map((tag) => (
           <li>
             <a
-              href={`/tags/${encodeURIComponent(tag)}/`}
+              href={`/tags/${tagSlug(tag)}/`}
               class="rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-700 hover:bg-sky-100"
             >
               #{tag}

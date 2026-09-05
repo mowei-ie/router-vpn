@@ -13,16 +13,31 @@ export async function getStaticPaths() {
     }
   }
 
+  const slugToTag = new Map<string, string>();
+  for (const tag of tagSet) {
+    const slug = tagSlug(tag);
+    const existing = slugToTag.get(slug);
+    if (existing !== undefined && existing !== tag) {
+      throw new Error(
+        `标签 slug 冲突："${existing}" 与 "${tag}" 均映射为 "${slug}"`,
+      );
+    }
+    slugToTag.set(slug, tag);
+  }
+
   return [...tagSet].map((tag) => ({
-    params: { tag },
+    params: { tag: tagSlug(tag) },
     props: {
+      tag,
       entries: articles.filter((entry) => entry.data.tags.includes(tag)),
     },
   }));
 }
 
-const { tag } = Astro.params;
-const { entries } = Astro.props as { entries: CollectionEntry<"articles">[] };
+const { tag, entries } = Astro.props as {
+  tag: string;
+  entries: CollectionEntry<"articles">[];
+};
 
 /**
  * 标签页 meta description：一句自然中文，信息前置（标签名 + 篇数在最前面，命中新规则要求的

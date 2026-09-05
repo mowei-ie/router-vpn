@@ -38,7 +38,9 @@ export default defineConfig({
       filter: (page) => {
         if (page.includes("/__draft")) return false;
         const { pathname } = new URL(page);
-        return !thinTagPaths.has(pathname);
+        // sitemap 里中文 path 是百分号编码的，thinTagPaths 存的是未编码 slug，decode 后再比对。
+        const decodedPath = decodeURIComponent(pathname);
+        return !thinTagPaths.has(decodedPath);
       },
     }),
   ],

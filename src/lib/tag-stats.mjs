@@ -12,8 +12,8 @@
  * frontmatter 解析用 `yaml` 包（Astro 自身依赖，`node_modules/yaml` 已存在），比手写正则更可靠。
  *
  * 标签 -> URL path segment 的 slug 化：与 `ArticleCard.astro` / `tags/index.astro` /
- * `tags/[tag].astro` 里生成 `href` 时一直使用的 `encodeURIComponent(tag)` 保持完全一致
- * （这里就是“现有的 slug 函数”，抽出来给 `astro.config.mjs` 的 sitemap filter 共用，不再各写一份）。
+ * `tags/[tag].astro` 里生成 `href` 时使用的 `tagSlug(tag)` 保持完全一致
+ * （抽出来给 `astro.config.mjs` 的 sitemap filter 共用，不再各写一份）。
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -40,9 +40,19 @@ const ARTICLE_SOURCES = [
  */
 export const TAG_INDEX_MIN_ARTICLES = 3;
 
-/** 标签字符串 -> `/tags/<slug>/` 的 URL path segment，和站内生成 href 时的写法保持一致。 */
+/**
+ * 标签字符串 -> `/tags/<slug>/` 的 URL path segment，和站内生成 href 时的写法保持一致。
+ * NFKC 归一化 → trim → 小写 → 非字母数字（含 CJK）替换为 `-` → 合并/去首尾 `-`。
+ * 中文标签保留汉字；不做 encodeURIComponent（浏览器/构建会自动百分号编码）。
+ */
 export function tagSlug(tag) {
-  return encodeURIComponent(tag);
+  return tag
+    .normalize("NFKC")
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
 function listMarkdownFiles(baseDir, recursive) {

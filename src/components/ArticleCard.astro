@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { tagSlug } from "../lib/tag-stats.mjs";
 
 interface Props {
   entry: CollectionEntry<"articles">;
@@ -27,7 +28,7 @@ const dateFormatter = new Intl.DateTimeFormat("zh-CN", {
     {tags.map((tag) => (
       <li>
         <a
-          href={`/tags/${encodeURIComponent(tag)}/`}
+          href={`/tags/${tagSlug(tag)}/`}
           class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-600 hover:bg-sky-100 hover:text-sky-700"
         >
           #{tag}

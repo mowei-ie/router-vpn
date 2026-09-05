@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { tagSlug } from "../../lib/tag-stats.mjs";
 
 const articles = await getCollection("articles", ({ data }) => !data.draft);
 
@@ -32,7 +33,7 @@ const description = `标签索引：本页汇总本站全部 ${articles.length} 
     {tags.map(([tag, count]) => (
       <li>
         <a
-          href={`/tags/${encodeURIComponent(tag)}/`}
+          href={`/tags/${tagSlug(tag)}/`}
           class="rounded-full bg-sky-50 px-3 py-1.5 text-sm font-medium text-sky-700 hover:bg-sky-100"
         >
           #{tag} <span class="text-sky-400">({count})</span>
