@@ -1,7 +1,0 @@
-/pages/netflix-guide /clash-subscription-guide 301
-/pages/jifengyun /clash-subscription-guide 301
-/pages/apple-id-hotspot-guide / 301
-/sitemap_index.xml /sitemap.xml 301
-/index.html / 301
-/:slug.html /:slug 301
-/pages/:slug.html /pages/:slug 301

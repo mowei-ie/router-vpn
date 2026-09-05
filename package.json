@@ -16,9 +16,6 @@
     "check-seo": "node scripts/check-seo.js",
     "indexnow-submit": "node scripts/indexnow-submit.js"
   },
-  "directories": {
-    "doc": "docs"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wybzsngw/ai-playbook.git"
