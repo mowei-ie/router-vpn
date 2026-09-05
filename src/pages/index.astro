@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import { CATEGORIES, CATEGORY_ORDER } from "../lib/categories";
+import { SITE_DESCRIPTION } from "../lib/site";
 
 const allArticles = await getCollection("articles", ({ data }) => !data.draft);
 
@@ -14,8 +15,7 @@ const latestArticles = [...allArticles]
   })
   .slice(0, 6);
 
-const pageDescription =
-  "AI 编程实战教程站是面向海外中文读者的技术教程站，系统整理 Cursor、ChatGPT、OpenAI API 与 OpenAI Codex 四大专题的实战步骤、工程化流程、账号与费用边界、常见故障排查方法，帮助你从安装配置到日常开发运维全流程落地使用 AI 编程与效率工具，少走弯路、避免反复踩坑。";
+const pageDescription = SITE_DESCRIPTION;
 ---
 
 <BaseLayout title="Cursor、ChatGPT、Codex 中文实战教程与避坑指南" description={pageDescription} isHome>
