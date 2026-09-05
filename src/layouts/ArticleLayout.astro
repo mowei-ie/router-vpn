@@ -89,9 +89,10 @@ const breadcrumbs = [
          后续如果需要更精细的插入位置，可以在 remark 阶段按段落数插入占位标记后再处理。 -->
     <AdSlot placement="in-article" />
 
-    {reviewNotes && reviewNotes.length > 0 && (
+    {/* 复核提示只在本地开发环境渲染，生产构建不输出：这是维护者内部信息，公开会向读者/搜索引擎传递“内容未核完”的负信号 */}
+    {import.meta.env.DEV && reviewNotes && reviewNotes.length > 0 && (
       <aside class="mt-10 rounded-lg border border-slate-100 bg-slate-50/60 p-4 text-xs leading-relaxed text-slate-500">
-        <p class="font-medium text-slate-500">复核提示（供维护者核对，不代表内容有误）</p>
+        <p class="font-medium text-slate-500">复核提示（供维护者核对，不代表内容有误；仅开发环境可见）</p>
         <ul class="mt-2 list-disc space-y-1 pl-4">
           {reviewNotes.map((note) => (
             <li>{note}</li>

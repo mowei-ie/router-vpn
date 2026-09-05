@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "AI 编程实战教程：Cursor / ChatGPT Plus / OpenAI API / OpenAI Codex",
   "type": "commonjs",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
