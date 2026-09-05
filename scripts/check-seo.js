@@ -21,6 +21,9 @@
  *   node scripts/check-seo.js --file dist/index.html   # 只检查指定文件的 meta 规则，跳过站级检查
  *   node scripts/check-seo.js --strict         # warning 也以 exit 1 退出
  *   node scripts/check-seo.js --json           # 输出 JSON，便于 CI 集成
+ *
+ * 下面 RULES 里的数值、必填 meta/JSON-LD 要求等规则说明，以仓库根目录的 SEO-STANDARDS.md 为准；
+ * 改动这里的数值时请同步更新那份文档，不要让两处不一致。
  */
 
 const fs = require("fs");

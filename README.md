@@ -49,6 +49,8 @@ Gemini CLI 尚未建档，因此不列入教程主表。本仓库目前也没有
 └── docs/            旧版静态站历史文件（已废弃，见下）
 ```
 
+新增/编辑文章、修改 SEO 相关组件前，请先看 [SEO-STANDARDS.md](SEO-STANDARDS.md)（title/description 规则、必填 meta、frontmatter 字段、affiliate 链接处理、本地校验方法等）。
+
 当前有效教程以仓库中的 Markdown 文件为准，`src/` 下的 Astro 站点在构建时读取这些 Markdown 生成 [aixiaobai168.com](https://www.aixiaobai168.com) 上的页面，不需要维护第二份内容。`docs/` 是旧版纯 HTML 静态站的历史文件（2026 年之前的路由器/VPN 主题内容，已长期暂停维护），已整体归档到 [`legacy-site`](https://github.com/wybzsngw/ai-tools-guide/tree/legacy-site) 分支保留查阅，主分支不再提供，也不会恢复。
 
 ## 内容原则与版权说明
