@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Cursor Agent 修 Windows：安全中心与更新源排障"
 description: "一次真实的 Windows 系统排障复盘：安全中心面板空白背后是 Defender 被策略级关停，叠加 Windows Update 被第三方 WSUS 劫持并遭 fake-ip 拦截，记录 Cursor Agent 如何在长会话里自主取证、修正命令错误、沉淀可复用诊断脚本，并总结人机协作排障的经验框架与实操建议。"
 pubDate: "2026-07-23T11:58:47+08:00"

@@ -1,4 +1,4 @@
-﻿# Cursor 教程专题入口
+# Cursor 教程专题入口
 
 > [Cursor 推广链接](https://cursor.com/referral?code=Y3RXKKUGMJ2G)：优惠与适用条件以结账页实际显示为准。
 
