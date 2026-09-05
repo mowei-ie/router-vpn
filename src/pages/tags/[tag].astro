@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
+import { TAG_INDEX_MIN_ARTICLES, tagSlug } from "../../lib/tag-stats.mjs";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles", ({ data }) => !data.draft);
@@ -57,14 +58,18 @@ function buildDescription(tagName: string, list: CollectionEntry<"articles">[]):
 const description = buildDescription(tag, entries);
 const title = `#${tag} 实战教程合集（共 ${entries.length} 篇文章）`;
 
+// 稀薄标签页（非 draft 文章数 < TAG_INDEX_MIN_ARTICLES）noindex，避免索引膨胀；
+// 对应地从 sitemap 剔除的逻辑在 astro.config.mjs 里，两边共用 src/lib/tag-stats.mjs 的统计与阈值。
+const robots = entries.length < TAG_INDEX_MIN_ARTICLES ? "noindex, follow" : "index, follow";
+
 const breadcrumbs = [
   { name: "首页", url: "/" },
   { name: "标签索引", url: "/tags/" },
-  { name: `标签：${tag}`, url: `/tags/${encodeURIComponent(tag)}/` },
+  { name: `标签：${tag}`, url: `/tags/${tagSlug(tag)}/` },
 ];
 ---
 
-<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+<BaseLayout title={title} description={description} robots={robots} breadcrumbs={breadcrumbs}>
   <nav class="mb-4 text-sm text-slate-500">
     <a class="hover:text-sky-700 hover:underline" href="/tags/">全部标签</a>
   </nav>
