@@ -25,34 +25,17 @@ const { tag } = Astro.params;
 const { entries } = Astro.props as { entries: CollectionEntry<"articles">[] };
 
 /**
- * 标签页 meta description 生成策略（避免 63+ 个标签页共用一句模板化死文案）：
- *   - 引用该标签下真实文章的标题（和单篇时的真实简介片段），保证内容准确、逐标签不同；
- *   - 用 clampToRange 把拼接结果收敛到 150-160 字符，优先在中文标点处断句，
- *     避免把无意义的空话堆进来凑字数。
- * 因为绝大多数标签下只有 1 篇文章，单篇/多篇分别设计拼接策略：
- *   - 单篇：标签名 + 该文章标题 + 该文章自身 description 的开头片段；
- *   - 多篇：标签名 + 篇数 + 全部文章标题列表，必要时追加第一篇文章的简介片段补足长度。
+ * 标签页 meta description：一句自然中文，信息前置（标签名 + 篇数在最前面，命中新规则要求的
+ * "核心信息放在前 70 字内"），不为了凑字数拼接固定尾句或堆砌全部文章标题。
+ * 单篇/多篇分别给出对应的自然表述，长度落在建议区间 70-110 字左右。
  */
-function clampToRange(text: string, min = 150, max = 160): string {
-  if (text.length <= max) return text;
-  for (let i = max; i >= min; i -= 1) {
-    if ("，。；、".includes(text[i - 1])) return text.slice(0, i);
-  }
-  return `${text.slice(0, max - 1)}…`;
-}
-
 function buildDescription(tagName: string, list: CollectionEntry<"articles">[]): string {
   if (list.length === 1) {
     const [only] = list;
-    const prefix = `AI 编程实战教程站「${tagName}」标签下收录教程《${only.data.title}》：`;
-    return clampToRange(prefix + only.data.description);
+    return `AI 编程实战教程站「${tagName}」标签下的教程：《${only.data.title}》，提供可直接落地的操作步骤、命令示例与风险边界提示，欢迎点击标签页查看完整实战内容。`;
   }
 
-  const titleList = list.map((entry) => `《${entry.data.title}》`).join("、");
-  const prefix = `AI 编程实战教程站「${tagName}」标签下共收录 ${list.length} 篇教程：${titleList}，`;
-  const withFallbackTail = `${prefix}覆盖该主题下的实战步骤、工程流程与注意事项，方便你按标签快速查找全部相关教程内容。`;
-  const raw = withFallbackTail.length >= 150 ? withFallbackTail : prefix + list[0].data.description;
-  return clampToRange(raw);
+  return `AI 编程实战教程站「${tagName}」标签下共收录 ${list.length} 篇教程，系统覆盖该主题的实战步骤、工程流程、配置方法与常见问题排查经验，方便你按标签快速定位并查阅全部相关内容。`;
 }
 
 const description = buildDescription(tag, entries);

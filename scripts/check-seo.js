@@ -5,8 +5,10 @@
  * 校验 dist/**\/*.html（构建产物）是否符合站点的 SEO meta 规范：
  *   1. <title>            显示宽度 50-65（超出会被搜索结果截断）
  *   2. <meta description> 同时满足：
- *      - 显示宽度 150-320（避免中文摘要过短或过长）
- *      - 字符数 150-160（Bing Webmaster Tools Recommendations 建议区间）
+ *      - 显示宽度 140-320（避免中文摘要过短或过长）
+ *      - 字符数 70-160（本站读者是中文用户，Google 中文搜索结果摘要通常只显示约 70-80 个汉字，
+ *        160 字符是硬上限——参考 Bing 的英文建议区间，避免极端情况下被过度截断；核心信息必须
+ *        放在描述的前 70 字以内，因为这是搜索引擎最可能截断的位置，70 字之后的内容更多是补充说明）
  *   3. 必填 meta 标签：keywords / robots / canonical / og:* / twitter:card
  *   4. 至少存在 1 个 application/ld+json 结构化数据
  *
@@ -36,9 +38,9 @@ const distDir = path.join(repoRoot, "dist");
 const RULES = {
   titleMin: 50,
   titleMax: 65,
-  descMin: 150,
+  descMin: 140,
   descMax: 320,
-  descCharMin: 150,
+  descCharMin: 70,
   descCharMax: 160,
   requiredMeta: [
     { name: "keywords", attr: "name" },
@@ -176,10 +178,10 @@ function checkFile(file) {
   } else {
     const w = displayWidth(desc);
     const chars = desc.length;
-    if (w < RULES.descMin) errors.push(`description 显示宽度 ${w} 太短 (<${RULES.descMin}, Bing 会标记)`);
+    if (w < RULES.descMin) errors.push(`description 显示宽度 ${w} 太短 (<${RULES.descMin})`);
     else if (w > RULES.descMax) warnings.push(`description 显示宽度 ${w} 偏长 (>${RULES.descMax})`);
-    if (chars < RULES.descCharMin) warnings.push(`description 字符数 ${chars} 太短 (<${RULES.descCharMin}, Bing 会标记)`);
-    else if (chars > RULES.descCharMax) warnings.push(`description 字符数 ${chars} 太长 (>${RULES.descCharMax}, Bing 会标记)`);
+    if (chars < RULES.descCharMin) warnings.push(`description 字符数 ${chars} 太短 (<${RULES.descCharMin}, 建议核心信息前置在前 70 字内)`);
+    else if (chars > RULES.descCharMax) warnings.push(`description 字符数 ${chars} 太长 (>${RULES.descCharMax}, 超出硬上限)`);
   }
 
   for (const r of RULES.requiredMeta) {

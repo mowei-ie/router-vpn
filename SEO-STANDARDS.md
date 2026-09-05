@@ -16,11 +16,18 @@
 
 | 维度 | 下限 | 上限 | 低于下限 | 高于上限 |
 | --- | --- | --- | --- | --- |
-| 显示宽度（中文记 2，ASCII 记 1） | 150 | 320 | error | warning |
-| 字符数（`.length`，中文/ASCII 均记 1） | 150 | 160 | warning | warning |
+| 显示宽度（中文记 2，ASCII 记 1） | 140 | 320 | error | warning |
+| 字符数（`.length`，中文/ASCII 均记 1） | 70 | 160 | warning | warning |
 
-- 显示宽度低于 150 是 **error**（会阻断 `npm run check-seo` 的退出码，`--strict` 之外也算 error）；其余越界情况都是 warning。
-- 字符数区间参考 Bing Webmaster Tools 的建议（150–160 字符），用于避免中文摘要在 Bing 搜索结果里被截断或判定过短。
+- 显示宽度低于 140 是 **error**（会阻断 `npm run check-seo` 的退出码，`--strict` 之外也算 error）；其余越界情况都是 warning。
+- 字符数区间是**为中文而不是英文设计的**：150–160 字符的旧规则来源于 Bing Webmaster Tools 对英文摘要的建议，但本站读者是中文用户，
+  Google 中文搜索结果的摘要通常只显示约 70–80 个汉字，160 字符的旧下限有将近一半内容永远不会被展示。因此：
+  - 建议中文描述写 **70–110 字**，signal 密度高、不啰嗦；
+  - **核心信息必须放在前 70 字以内**——这是搜索引擎最可能截断摘要的位置，70 字之后的内容更多是补充说明；
+  - 160 字符仍是**硬上限**（沿用旧规则的上限，已有的、长度在 150–160 之间的文章描述不需要为了这次调整重写）。
+- 注意：`src/content.config.ts` 里 `articles` collection 的 frontmatter `description` 字段 Zod schema 仍然是 `min(150).max(160)`
+  ——那是对**文章正文 frontmatter** 的独立校验规则，本次只放宽了 `check-seo.js` 对**生成产物 HTML**的字符数下限（主要影响标签页/分类页
+  等由代码拼装描述的页面），两者不是同一套规则，故意保持独立，不需要同步改。
 
 ## 3. 必填 meta / link 标签
 
@@ -102,7 +109,22 @@
 - `npm run check-seo` 会额外做"draft 泄漏"兜底检查：扫描源 Markdown 里 `draft: true` 的文章，确认它们在 `dist/` 里确实没有
   对应的 `index.html`；如果检测到泄漏（正常情况下不会发生），会报 error。
 
-## 10. 如何本地运行检查
+## 10. 稀薄标签页 noindex 与 sitemap 剔除
+
+标签页（`/tags/<tag>/`）数量会随文章数量线性增长，但大部分标签下往往只挂了 1 篇文章——这类"稀薄内容"页面
+被搜索引擎大量收录会造成索引膨胀，稀释站点整体权重。规则：
+
+- 阈值常量 `TAG_INDEX_MIN_ARTICLES`（当前 `3`）定义在 `src/lib/tag-stats.mjs`，`astro.config.mjs`（sitemap
+  `filter`）与 `src/pages/tags/[tag].astro`（页面 `robots` 判断）共用同一份统计逻辑与阈值，避免两处规则出现分歧。
+- 标签下**非 draft 文章数 < 阈值**：页面输出 `<meta name="robots" content="noindex, follow">`，且对应 URL
+  从 `dist/sitemap-0.xml` 里剔除。
+- 标签下文章数 **≥ 阈值**：保持 `index, follow`，正常出现在 sitemap 里。
+- `/tags/` 标签索引页本身不受这条规则影响，始终 `index, follow` 且始终在 sitemap 里。
+- `check-seo.js` 对 `robots` 的取值本身没有做"必须是 `index, follow`"的强校验（只检查该 meta 标签存在），
+  所以这条规则不需要放宽 check-seo 的断言；但如果未来给 `robots` 加值校验，需要显式允许 `noindex, follow`
+  这个取值出现在标签页上。
+
+## 11. 如何本地运行检查
 
 ```powershell
 npm run build        # astro check && astro build，先产出 dist/
