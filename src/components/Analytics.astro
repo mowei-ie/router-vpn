@@ -13,7 +13,7 @@
  *   数据完全丢失，对隐私没有实质帮助。广告相关的 Cookie（AdSlot 组件）仍然需要同意，
  *   见 ConsentBanner.astro 与 src/lib/ad-provider.ts。
  *
- * token 从哪里获取见仓库根目录 SETUP.md。
+ * token 在 Cloudflare Dashboard → Web Analytics → 站点 → JS snippet 中获取。
  */
 const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 const shouldLoadBeacon = import.meta.env.PROD && Boolean(beaconToken);

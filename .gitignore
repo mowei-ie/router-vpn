@@ -8,8 +8,10 @@ private*/
 AGENTS.md
 **/AGENTS.md
 
-# 上线操作清单 - 维护者本人的账号级操作记录，不公开
+# 维护者内部文件 - 上线操作清单 / 凭证申请步骤 / 内容运营策略，不公开
 RELEASE-CHECKLIST.md
+SETUP.md
+CONTENT-GROWTH-NOTES.md
 
 # 系统文件
 .DS_Store

@@ -103,7 +103,7 @@ Gemini CLI 尚未建档，因此不列入教程主表。本仓库目前也没有
 ## 站点配置
 
 新版 Astro 站点（`feat/site-relaunch` 分支）用到几个可选环境变量（Google Search Console 验证、Cloudflare Web Analytics、广告开关），
-默认都不设置也能正常构建。凭证获取方式、如何填入见 [SETUP.md](SETUP.md)。
+默认都不设置也能正常构建。变量名与用途见 [.env.example](.env.example)，复制为 `.env` 后按需填入。
 
 ## 反馈与贡献
 
