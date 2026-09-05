@@ -2,10 +2,13 @@
 /**
  * ConsentBanner.astro
  *
- * 首次访问时在页面底部提示"本站使用分析与广告 Cookie"，提供同意/拒绝两个按钮。
+ * 首次访问时在页面底部提示"本站使用广告 Cookie"，提供同意/拒绝两个按钮。
  * 纯 localStorage 记忆同意状态，不依赖任何第三方同意管理 SDK。
- * 广告适配层（AdSlot）和隐私友好分析（Analytics）都监听同一个同意状态，
- * 拒绝时不加载对应脚本；同意后如果当前页面还在，会实时补充加载。
+ * 广告适配层（AdSlot）监听这个同意状态，拒绝时不加载广告脚本；同意后如果当前页面还在，
+ * 会实时补充加载。
+ *
+ * 注意：Cloudflare Web Analytics（见 Analytics.astro）不使用 Cookie/跨站跟踪，已经不再
+ * 受这个同意状态门控，因此文案只提"广告 Cookie"，不再提"分析"。
  */
 ---
 
@@ -18,7 +21,8 @@
 >
   <div class="mx-auto flex max-w-5xl flex-col items-center gap-3 text-sm text-slate-700 sm:flex-row sm:justify-between">
     <p class="leading-6">
-      本站使用分析与广告 Cookie：分析用于统计访问情况，广告 Cookie 仅在部分地区、部分广告商可用时才会生效。
+      本站可能使用个性化广告 Cookie（仅在部分地区、部分广告商可用时才会生效），用于展示广告；
+      本站的访问统计（Cloudflare Web Analytics）不使用 Cookie，不受此提示影响。
       详见<a class="underline hover:text-sky-700" href="/privacy/">隐私政策</a>。
     </p>
     <div class="flex shrink-0 gap-2">

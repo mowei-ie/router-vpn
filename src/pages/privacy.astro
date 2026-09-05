@@ -20,11 +20,16 @@ const breadcrumbs = [
 
     <h2>本站使用的分析工具</h2>
     <p>
-      本站使用 <strong>Cloudflare Web Analytics</strong> 统计访问情况。这是一个无 Cookie、隐私友好的分析服务：
-      它不通过客户端存储或跨站指纹跟踪你，只统计聚合层面的访问量、页面路径、来源等信息，帮助我们了解哪些内容对读者有帮助。
+      本站使用 <strong>Cloudflare Web Analytics</strong> 统计访问情况。这是一个<strong>无 Cookie</strong>的隐私友好分析服务：
+      它不使用 Cookie、不通过客户端存储（如 localStorage）或跨站指纹跟踪你，也不收集姓名、邮箱等个人身份信息，
+      只统计聚合层面的访问量、页面路径、来源等信息，帮助我们了解哪些内容对读者有帮助。详见
+      <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer">Cloudflare 隐私政策</a>。
     </p>
     <ul>
-      <li>该分析脚本只会在<strong>你同意 Cookie</strong>（见下方"同意管理"一节）之后才会加载。</li>
+      <li>
+        因为不使用 Cookie、不做跨站跟踪，Cloudflare Web Analytics <strong>始终启用</strong>，不受下方"同意管理"一节的
+        Cookie 同意状态影响——这与本站预留的广告位不同，广告相关 Cookie 仍然只在你同意后才会加载。
+      </li>
       <li>如果本站还没有配置 Cloudflare Web Analytics 的 beacon token，页面上完全不会加载任何分析脚本。</li>
     </ul>
 
@@ -46,10 +51,13 @@ const breadcrumbs = [
     </ul>
 
     <h2>同意管理与如何选择退出</h2>
-    <p>首次访问本站时，页面底部会出现一个 Cookie 同意提示，你可以选择"同意"或"拒绝"：</p>
+    <p>
+      首次访问本站时，页面底部会出现一个 Cookie 同意提示，你可以选择"同意"或"拒绝"——这个提示<strong>只针对广告
+      相关 Cookie</strong>，不影响 Cloudflare Web Analytics（它始终启用，且不使用 Cookie）：
+    </p>
     <ul>
-      <li><strong>拒绝</strong>：本站不会加载 Cloudflare Web Analytics 分析脚本，广告位也保持空白占位，不加载任何广告相关脚本。</li>
-      <li><strong>同意</strong>：本站会按上述范围加载分析脚本，并在广告商正式接入后展示广告。</li>
+      <li><strong>拒绝</strong>：广告位保持空白占位，不加载任何广告相关脚本。</li>
+      <li><strong>同意</strong>：本站会在广告商正式接入后展示广告。</li>
       <li>
         你的选择只保存在浏览器本地存储（<code>localStorage</code>）中，本站服务器不会记录这个选择。
         如果想重新做出选择，清除该站点的浏览器本地存储/网站数据即可，下次访问会重新出现同意提示。

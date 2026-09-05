@@ -48,8 +48,8 @@
    ```
    PUBLIC_CF_BEACON_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
    ```
-3. 重新部署后，本站会在**访客同意 Cookie 提示后**才动态加载这段官方 beacon 脚本（逻辑见 `src/components/Analytics.astro`）。
-4. 因为 Cloudflare Web Analytics 本身不用 Cookie，理论上不需要同意也能合规使用；这里仍然接到同意状态门控只是为了统一体验、把"同意=可以做一切追踪相关的事"讲清楚，你也可以按自己的判断放宽。
+3. 重新部署后，本站会在生产构建（`import.meta.env.PROD`）里直接加载这段官方 beacon 脚本（逻辑见 `src/components/Analytics.astro`），**不受访客 Cookie 同意状态门控**——因为 Cloudflare Web Analytics 本身不使用 Cookie、不做跨站跟踪，不属于需要同意才能加载的场景。
+4. 本站的 Cookie 同意提示（`ConsentBanner.astro`）现在只针对广告相关 Cookie；访客选择"拒绝"不会影响 Cloudflare Web Analytics 的数据采集。
 
 ## 3. Google AdSense（如决定启用）
 

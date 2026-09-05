@@ -4,47 +4,28 @@
  *
  * 接入 Cloudflare Web Analytics（无 cookie、免费，和 Cloudflare Pages 托管天然契合）。
  * - 未配置 PUBLIC_CF_BEACON_TOKEN 环境变量时，什么都不渲染，不会加载任何脚本。
- * - 配置了 token 时，只有访客同意 Cookie（ConsentBanner）后才真正注入 Cloudflare 官方
- *   beacon 脚本；访客还没做出选择、或选择了"拒绝"时不加载。
- *   如果访客在当前页面停留期间点击"同意"，会实时补充加载，不需要刷新页面。
+ * - 配置了 token 且是生产构建（import.meta.env.PROD）时，页面加载即注入 Cloudflare 官方
+ *   beacon 脚本，不再受 ConsentBanner 的同意状态门控。
+ *
+ *   为什么不再需要同意：Cloudflare Web Analytics 官方声明不使用任何客户端标识符（cookie、
+ *   localStorage、指纹），不做跨站跟踪，只统计聚合层面的访问数据，不满足触发"需要用户同意"
+ *   的 Cookie/跟踪定义。继续把它放在同意门控后面，只会让绝大多数从不点"同意"的访客的访问
+ *   数据完全丢失，对隐私没有实质帮助。广告相关的 Cookie（AdSlot 组件）仍然需要同意，
+ *   见 ConsentBanner.astro 与 src/lib/ad-provider.ts。
  *
  * token 从哪里获取见仓库根目录 SETUP.md。
  */
 const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
+const shouldLoadBeacon = import.meta.env.PROD && Boolean(beaconToken);
 ---
 
 {
-  beaconToken && (
-    <div id="cf-beacon-config" data-token={beaconToken} class="hidden" aria-hidden="true" />
-  )
-}
-
-{
-  beaconToken && (
-    <script>
-      import { getConsent, onConsentChange } from "../lib/consent-client.js";
-
-      const configEl = document.getElementById("cf-beacon-config");
-      const token = configEl ? configEl.dataset.token : null;
-
-      let loaded = false;
-      function loadBeacon() {
-        if (loaded || !token) return;
-        loaded = true;
-        const script = document.createElement("script");
-        script.src = "https://static.cloudflareinsights.com/beacon.min.js";
-        script.defer = true;
-        script.setAttribute("data-cf-beacon", JSON.stringify({ token }));
-        document.body.appendChild(script);
-      }
-
-      if (getConsent() === "granted") {
-        loadBeacon();
-      } else {
-        onConsentChange((value) => {
-          if (value === "granted") loadBeacon();
-        });
-      }
-    </script>
+  shouldLoadBeacon && (
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={JSON.stringify({ token: beaconToken })}
+    />
   )
 }
