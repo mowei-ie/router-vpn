@@ -48,7 +48,7 @@ interface Props {
 const {
   title,
   description,
-  image = "/og-default.svg",
+  image = "/og-default.png",
   keywords,
   robots = "index, follow",
   type = "website",
@@ -61,6 +61,20 @@ const pageTitle = title === SITE_NAME ? title : `${title} · ${SITE_NAME}`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 const imageUrl = new URL(image, Astro.site).toString();
 const siteUrl = Astro.site ? Astro.site.toString() : canonicalUrl;
+
+// og:image:type 按 image 的文件扩展名推断；og:image:width/height 目前只有站点默认配图
+// （public/og-default.png，固定 1200x630）知道确切尺寸，其余自定义 image 暂不假设尺寸。
+const DEFAULT_IMAGE_PATH = "/og-default.png";
+const IMAGE_MIME_BY_EXT: Record<string, string> = {
+  png: "image/png",
+  svg: "image/svg+xml",
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  webp: "image/webp",
+};
+const imageExt = image.split(".").pop()?.toLowerCase();
+const imageMimeType = imageExt ? IMAGE_MIME_BY_EXT[imageExt] : undefined;
+const isDefaultImage = image === DEFAULT_IMAGE_PATH;
 
 const defaultKeywords = [
   "AI 编程",
@@ -141,6 +155,15 @@ if (breadcrumbs && breadcrumbs.length > 0) {
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:type" content={type} />
 <meta property="og:image" content={imageUrl} />
+{imageMimeType && <meta property="og:image:type" content={imageMimeType} />}
+{
+  isDefaultImage && (
+    <>
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+    </>
+  )
+}
 <meta property="og:locale" content="zh_CN" />
 
 <!-- Twitter Card -->
