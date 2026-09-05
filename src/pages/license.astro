@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_NAME } from "../lib/site";
 
 const description =
   "本站教程内容许可说明：代码部分采用 Apache-2.0 授权，教程正文采用 CC BY 4.0 授权。本页详细说明许可适用范围、不适用范围、你可以自由共享与演绎内容的权利、商业使用条件、转载与改编时的署名要求与完整格式示例，以及涉及商标和第三方引用内容的边界，帮助你合规引用本站内容而不产生版权风险。";
@@ -10,7 +11,7 @@ const breadcrumbs = [
 ];
 ---
 
-<BaseLayout title="许可与转载说明：CC BY 4.0 授权须知" description={description} breadcrumbs={breadcrumbs}>
+<BaseLayout title="许可与转载说明：CC BY 4.0 授权与署名格式" description={description} breadcrumbs={breadcrumbs}>
   <article class="prose-article">
     <h1 class="text-3xl font-bold text-slate-900">教程内容许可（CC BY 4.0）</h1>
     <p>
@@ -68,7 +69,7 @@ const breadcrumbs = [
     </ol>
 
     <h3>署名示例</h3>
-    <pre><code>本文改编自 wybzsngw / AI 编程实战教程站（https://www.aixiaobai168.com），
+    <pre><code>本文改编自 wybzsngw / {SITE_NAME}（https://www.aixiaobai168.com），
 依据 CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）授权使用，内容有删改。</code></pre>
 
     <h2>免责</h2>

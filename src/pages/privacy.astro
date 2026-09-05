@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_NAME } from "../lib/site";
 
 const description =
-  "AI 编程实战教程站的隐私政策：说明本站使用的分析工具（Cloudflare Web Analytics）、可能出现的广告 Cookie（如 Google AdSense）、如何选择退出这些追踪，以及本站不采集姓名、邮箱等不必要个人数据的承诺，帮助你了解自己的浏览数据在访问本站期间会被如何收集、使用与保护。";
+  `${SITE_NAME}的隐私政策：说明本站使用的分析工具（Cloudflare Web Analytics）、可能出现的广告 Cookie（如 Google AdSense）、如何选择退出这些追踪，以及本站不采集姓名、邮箱等不必要个人数据的承诺，帮助你了解自己的浏览数据在访问本站期间会被如何收集、使用与保护。`;
 
 const breadcrumbs = [
   { name: "首页", url: "/" },
@@ -14,7 +15,7 @@ const breadcrumbs = [
   <article class="prose-article">
     <h1 class="text-3xl font-bold text-slate-900">隐私政策</h1>
     <p>
-      本页说明 AI 编程实战教程站会使用哪些分析与广告相关的技术、这些技术会不会采集你的个人数据，
+      本页说明 {SITE_NAME} 会使用哪些分析与广告相关的技术、这些技术会不会采集你的个人数据，
       以及你可以如何选择退出。本站的原则是：<strong>不采集超出运营站点所必需的个人数据</strong>。
     </p>
 
@@ -74,7 +75,7 @@ const breadcrumbs = [
       <li>本站不会把分析或广告相关的数据与你的真实身份关联，也不会将这些数据出售给第三方。</li>
       <li>本站没有评论区或表单，不会主动收集你主动提交的文本内容。</li>
       <li>
-        如果你通过 <a href="https://github.com/wybzsngw/ai-tools-guide/issues" rel="noopener noreferrer">GitHub Issue</a>
+        如果你通过 <a href="https://github.com/wybzsngw/ai-playbook/issues" rel="noopener noreferrer">GitHub Issue</a>
         反馈问题，相关信息由 GitHub 按其自身隐私政策处理，不在本站控制范围内。
       </li>
     </ul>
@@ -87,7 +88,7 @@ const breadcrumbs = [
 
     <p class="mt-6 text-slate-500">
       如对本页内容有疑问，欢迎通过
-      <a href="https://github.com/wybzsngw/ai-tools-guide/issues" rel="noopener noreferrer">GitHub Issue</a>
+      <a href="https://github.com/wybzsngw/ai-playbook/issues" rel="noopener noreferrer">GitHub Issue</a>
       反馈。另见 <a href="/disclaimer/">免责声明</a> 与 <a href="/license/">许可与转载</a>。
     </p>
   </article>

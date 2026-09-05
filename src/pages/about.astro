@@ -1,9 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_NAME } from "../lib/site";
 
 const description =
-  "关于 AI 编程实战教程站：本站是面向海外中文读者的 AI 编程与效率工具教程站，介绍站点定位、作者 wybzsngw 的原创整理与维护方式、AI 辅助起草与人工复核的具体流程、内容复核状态、内容原则、许可协议与版权边界，以及反馈与贡献渠道，帮助你快速判断本站的信息来源是否可信、内容是否真正值得参考并动手复现实践。";
+  `关于 ${SITE_NAME}：本站是面向海外中文读者的 AI 编程与 Agent 工作流实战手册，介绍站点定位、作者 wybzsngw 的原创整理与维护方式、AI 辅助起草与人工复核流程、内容复核状态、内容原则、许可协议与版权边界，以及反馈与贡献渠道，帮助你快速判断本站的信息来源是否可信、内容是否值得参考并动手复现实践。`;
 
 const breadcrumbs = [
   { name: "首页", url: "/" },
@@ -28,7 +29,7 @@ const dateFormatter = new Intl.DateTimeFormat("zh-CN", { year: "numeric", month:
     <h1 class="text-3xl font-bold text-slate-900">关于本站</h1>
 
     <p>
-      本站是面向中文读者的 AI 编程与效率工具实战教程站，围绕 <strong>Cursor</strong>、
+      本站是面向海外中文读者的 AI 编程与 Agent 工作流实战手册，围绕 <strong>Cursor</strong>、
       <strong>ChatGPT</strong>、<strong>OpenAI API</strong> 与 <strong>OpenAI Codex</strong>
       四个专题，重点关注可执行的操作步骤、工程化流程、风险边界和版本核验，而不是复述官方文档或堆砌营销话术。
     </p>
@@ -95,7 +96,7 @@ const dateFormatter = new Intl.DateTimeFormat("zh-CN", { year: "numeric", month:
     <h2>反馈与贡献</h2>
     <p>
       发现内容问题或有改进建议，欢迎通过
-      <a href="https://github.com/wybzsngw/ai-tools-guide/issues" rel="noopener noreferrer">GitHub Issue</a>
+      <a href="https://github.com/wybzsngw/ai-playbook/issues" rel="noopener noreferrer">GitHub Issue</a>
       反馈，也欢迎提交 Pull Request。
     </p>
   </article>

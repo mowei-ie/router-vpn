@@ -1,5 +1,6 @@
 ---
 import { CATEGORIES, CATEGORY_ORDER } from "../lib/categories";
+import { SITE_NAME } from "../lib/site";
 
 const navLinks = [
   { href: "/", label: "首页" },
@@ -22,7 +23,7 @@ function isActive(href: string) {
   <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
     <a href="/" class="flex items-center gap-2 text-lg font-bold text-slate-900">
       <span aria-hidden="true">🤖</span>
-      <span>AI 编程实战教程</span>
+      <span>{SITE_NAME}</span>
     </a>
 
     <!-- 桌面导航：纯 CSS 响应式隐藏/显示，无需 JavaScript -->

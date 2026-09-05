@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import { TAG_INDEX_MIN_ARTICLES, tagSlug } from "../../lib/tag-stats.mjs";
+import { SITE_NAME } from "../../lib/site";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles", ({ data }) => !data.draft);
@@ -47,10 +48,10 @@ const { tag, entries } = Astro.props as {
 function buildDescription(tagName: string, list: CollectionEntry<"articles">[]): string {
   if (list.length === 1) {
     const [only] = list;
-    return `AI 编程实战教程站「${tagName}」标签下的教程：《${only.data.title}》，提供可直接落地的操作步骤、命令示例与风险边界提示，欢迎点击标签页查看完整实战内容。`;
+    return `${SITE_NAME}「${tagName}」标签下的教程：《${only.data.title}》，提供可直接落地的操作步骤、命令示例与风险边界提示，欢迎点击标签页查看完整实战内容。`;
   }
 
-  return `AI 编程实战教程站「${tagName}」标签下共收录 ${list.length} 篇教程，系统覆盖该主题的实战步骤、工程流程、配置方法与常见问题排查经验，方便你按标签快速定位并查阅全部相关内容。`;
+  return `${SITE_NAME}「${tagName}」标签下共收录 ${list.length} 篇教程，系统覆盖该主题的实战步骤、工程流程、配置方法与常见问题排查经验，方便你按标签快速定位并查阅全部相关内容。`;
 }
 
 const description = buildDescription(tag, entries);

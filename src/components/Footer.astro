@@ -1,4 +1,6 @@
 ---
+import { SITE_NAME, SITE_TAGLINE } from "../lib/site";
+
 const year = new Date().getFullYear();
 ---
 
@@ -6,11 +8,8 @@ const year = new Date().getFullYear();
   <div class="mx-auto max-w-5xl px-4 py-10 text-sm text-slate-600">
     <div class="grid gap-8 sm:grid-cols-3">
       <div>
-        <p class="font-semibold text-slate-900">AI 编程实战教程</p>
-        <p class="mt-2 leading-6">
-          面向中文读者的 Cursor、ChatGPT、OpenAI API 与 OpenAI Codex
-          实战教程，专注可执行步骤与风险边界。
-        </p>
+        <p class="font-semibold text-slate-900">{SITE_NAME}</p>
+        <p class="mt-2 leading-6">{SITE_TAGLINE}</p>
       </div>
       <div>
         <p class="font-semibold text-slate-900">关于本站</p>
@@ -28,14 +27,14 @@ const year = new Date().getFullYear();
           <li>
             <a
               class="hover:text-sky-700 hover:underline"
-              href="https://github.com/wybzsngw/ai-tools-guide"
+              href="https://github.com/wybzsngw/ai-playbook"
               rel="noopener noreferrer"
             >GitHub 仓库</a>
           </li>
           <li>
             <a
               class="hover:text-sky-700 hover:underline"
-              href="https://github.com/wybzsngw/ai-tools-guide/issues"
+              href="https://github.com/wybzsngw/ai-playbook/issues"
               rel="noopener noreferrer"
             >反馈 Issue</a>
           </li>

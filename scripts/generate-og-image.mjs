@@ -36,9 +36,9 @@ const HEIGHT = 630;
 
 // 与 og-default.svg 保持一致的渐变配色（#0284c7 -> #4338ca）与文案分层：
 // 站点名（大字）/ 专题范围（中字）/ 站点域名（小字），只是把损坏的文本换成正确的 UTF-8 字符串。
-// 站点名与 src/lib/site.ts 里的 SITE_NAME 保持一致，改站名时两处都要同步改。
-const SITE_NAME = "AI 编程实战教程";
-const SUBTITLE = "Cursor · ChatGPT · OpenAI API · OpenAI Codex";
+// 与 src/lib/site.ts 里的 SITE_NAME 保持一致，改站名时两处都要同步改。
+const SITE_NAME = "AI 实战手册";
+const SUBTITLE = "Cursor · OpenAI Codex · ChatGPT · OpenAI API";
 const SITE_URL_TEXT = "www.aixiaobai168.com";
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
